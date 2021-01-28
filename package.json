@@ -9,6 +9,8 @@
     "lint": "./node_modules/.bin/eslint ./src"
   },
   "dependencies": {
+    "cn": "^0.1.1",
+    "date-fns": "^2.16.1",
     "next": "10.0.5",
     "react": "17.0.1",
     "react-dom": "17.0.1"
