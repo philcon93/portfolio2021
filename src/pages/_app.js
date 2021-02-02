@@ -1,8 +1,9 @@
 import '../styles/index.css';
 import { useState } from 'react';
 import { MenuToggle, SidebarNav } from '../components';
+import PropTypes from 'prop-types';
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   const [toggleMenu, setToggleMenu] = useState(true);
 
   return (
@@ -17,5 +18,10 @@ function MyApp({ Component, pageProps }) {
     </div>
   );
 }
+
+MyApp.propTypes = {
+  Component: PropTypes.elementType.isRequired,
+  pageProps: PropTypes.object,
+};
 
 export default MyApp;

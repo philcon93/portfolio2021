@@ -1,5 +1,6 @@
 import { Avatar, CoverImage, DateFormatter } from './';
-import Link from 'next/link'
+import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 export const PostPreview = ({
   title,
@@ -32,4 +33,13 @@ export const PostPreview = ({
       <Avatar name={author.name} picture={author.picture} />
     </div>
   )
+};
+
+PostPreview.propTypes = {
+  title: PropTypes.string,
+  coverImage: PropTypes.string,
+  date: PropTypes.string,
+  excerpt: PropTypes.string,
+  author: PropTypes.object,
+  slug: PropTypes.string
 };

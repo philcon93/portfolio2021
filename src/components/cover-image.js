@@ -1,6 +1,7 @@
-import cn from 'classnames'
-import Link from 'next/link'
-import Image from 'next/image'
+import cn from 'classnames';
+import Link from 'next/link';
+import Image from 'next/image';
+import PropTypes from 'prop-types';
 
 export const CoverImage = ({ title, src, slug, height, width }) => {
   const image = (
@@ -27,3 +28,11 @@ export const CoverImage = ({ title, src, slug, height, width }) => {
     </div>
   )
 }
+
+CoverImage.propTypes = {
+  title: PropTypes.string,
+  src: PropTypes.string,
+  slug: PropTypes.string,
+  height: PropTypes.number,
+  width: PropTypes.number
+};

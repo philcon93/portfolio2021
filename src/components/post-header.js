@@ -1,4 +1,5 @@
 import { Avatar, DateFormatter, CoverImage, PostTitle } from '../components';
+import PropTypes from 'prop-types';
 
 export const PostHeader = ({ title, coverImage, date, author }) => {
   return (
@@ -21,3 +22,10 @@ export const PostHeader = ({ title, coverImage, date, author }) => {
     </>
   )
 }
+
+PostHeader.propTypes = {
+  title: PropTypes.string,
+  coverImage: PropTypes.string,
+  date: PropTypes.string,
+  author: PropTypes.object
+};

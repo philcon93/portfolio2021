@@ -1,4 +1,5 @@
 import { PostPreview } from './post-preview';
+import PropTypes from 'prop-types';
 
 export const Posts = ({ posts }) => {
   return (
@@ -18,4 +19,8 @@ export const Posts = ({ posts }) => {
       </div>
     </section>
   )
+};
+
+Posts.propTypes = {
+  posts: PropTypes.array
 };

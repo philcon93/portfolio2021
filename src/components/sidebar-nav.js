@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { CMS_NAME } from '../utilities/constants';
+import PropTypes from 'prop-types';
 
 const NavItem = ({ href, children }) => (
   <div className="mb-2">
@@ -40,3 +41,18 @@ export const SidebarNav = ({ showMenu }) => (
     </nav>
   </aside>
 );
+
+
+NavItem.propTypes = {
+  href: PropTypes.string,
+  children: PropTypes.node
+};
+
+SocialLink.propTypes = {
+  href: PropTypes.string,
+  children: PropTypes.node
+};
+
+SidebarNav.propTypes = {
+  showMenu: PropTypes.bool
+};

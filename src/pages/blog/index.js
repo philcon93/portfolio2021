@@ -2,6 +2,7 @@ import { BlogIntro, Posts } from '../../components';
 import { getAllPosts } from '../../utilities/api';
 import Head from 'next/head';
 import { CMS_NAME } from '../../utilities/constants';
+import PropTypes from 'prop-types';
 
 export default function Index({ posts }) {
   return (
@@ -31,3 +32,7 @@ export async function getStaticProps() {
     props: { posts },
   }
 }
+
+Index.propTypes = {
+  posts: PropTypes.array
+};

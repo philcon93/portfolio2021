@@ -5,6 +5,7 @@ import { getPostBySlug, getAllPosts } from '../../utilities/api';
 import { CMS_NAME } from '../../utilities/constants';
 import Head from 'next/head';
 import markdownToHtml from '../../utilities/markdownToHtml';
+import PropTypes from 'prop-types';
 
 export default function Post({ post }) {
   const router = useRouter()
@@ -72,3 +73,7 @@ export async function getStaticPaths() {
     fallback: false,
   }
 }
+
+Post.propTypes = {
+  post: PropTypes.object
+};

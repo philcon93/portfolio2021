@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const Avatar = ({ name, picture }) => {
     return (
       <div className="flex items-center">
@@ -5,4 +7,9 @@ export const Avatar = ({ name, picture }) => {
         <div className="text-xl font-bold">{name}</div>
       </div>
     )
+};
+
+Avatar.propTypes = {
+  name: PropTypes.string,
+  picture: PropTypes.string
 };

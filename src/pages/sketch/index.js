@@ -2,6 +2,7 @@ import { SketchIntro, Posts } from '../../components';
 import { getSketchSlugs } from '../../utilities/api';
 import Head from 'next/head';
 import { CMS_NAME } from '../../utilities/constants';
+import PropTypes from 'prop-types';
 
 export default function Index({ sketches }) {
   return (
@@ -24,3 +25,7 @@ export async function getStaticProps() {
         props: { sketches: [] },
     }
 }
+
+Index.propTypes = {
+  sketches: PropTypes.array
+};
