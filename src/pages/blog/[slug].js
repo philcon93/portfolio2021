@@ -6,7 +6,7 @@ import { CMS_NAME } from '../../utilities/constants';
 import Head from 'next/head';
 import markdownToHtml from '../../utilities/markdownToHtml';
 
-export default function Post({ post, morePosts, preview }) {
+export default function Post({ post }) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />

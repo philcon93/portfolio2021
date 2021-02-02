@@ -1,6 +1,6 @@
 import { PostPreview } from './post-preview';
 
-export const BlogPosts = ({ posts }) => {
+export const Posts = ({ posts }) => {
   return (
     <section>
       <div className="md:gap-y-32 mb-32">

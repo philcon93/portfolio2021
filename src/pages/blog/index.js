@@ -1,22 +1,24 @@
-import { Intro, BlogPosts } from '../../components';
+import { BlogIntro, Posts } from '../../components';
 import { getAllPosts } from '../../utilities/api';
 import Head from 'next/head';
 import { CMS_NAME } from '../../utilities/constants';
 
-export default function Index({ allPosts }) {
+export default function Index({ posts }) {
   return (
     <>
         <Head>
           <title>{CMS_NAME} | Blog</title>
         </Head>
-        <Intro />
-        <BlogPosts posts={allPosts} />
+        <BlogIntro />
+        {
+          posts.length > 0 ? <Posts posts={posts} /> : null
+        }
     </>
   )
 }
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts([
+  const posts = getAllPosts([
     'title',
     'date',
     'slug',
@@ -26,6 +28,6 @@ export async function getStaticProps() {
   ])
 
   return {
-    props: { allPosts },
+    props: { posts },
   }
 }
