@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { CMS_NAME } from '../utilities/constants';
+import { Intro } from '../components';
 
 export default function Home() {
   return (
@@ -8,15 +9,8 @@ export default function Home() {
         <title>{CMS_NAME}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Intro title="Professional Space Monkey." />
       <div className="w-100">
-        <h1 className="mb-0">
-          Phil
-          <span className="text-primary">Connah</span>
-        </h1>
-        <div className="subheading mb-5">
-          Professional Space Monkey · Australia ·
-          <a href="mailto:philip.connah93@gmail.com">philip.connah93@gmail.com</a>
-        </div>
         <p className="lead mb-5">
           Hey there, my name is Phil! I have been working as a front end web developer for over 5 years, with a high end focus of ecommerce, user experience and accessibility. I love designing, developing web applications, and understanding user behaviour!
         </p>
