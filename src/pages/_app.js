@@ -1,4 +1,4 @@
-import '../styles/index.css';
+import '../styles/globals.css';
 import { useState } from 'react';
 import { MenuToggle, SidebarNav } from '../components';
 import PropTypes from 'prop-types';
