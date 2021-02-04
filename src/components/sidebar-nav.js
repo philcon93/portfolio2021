@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { CMS_NAME } from '../utilities/constants';
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { ThemeContext } from '../theme/theme-context';
 
 const NavItem = ({ href, children }) => (
   <div className="mb-2">
@@ -11,6 +13,18 @@ const NavItem = ({ href, children }) => (
     </Link>
   </div>
 );
+
+const ThemeToggle = () => {
+  const { dark, toggleDark } = useContext(ThemeContext);
+
+  return (
+    <div>
+      <a onClick={toggleDark} className="text-xs text-gray-700 dark:text-gray-400">
+        {dark ? "Dark" : "Light"} Theme
+      </a>
+    </div>
+  );
+};
 
 const SocialLink = ({ href, children }) => (
   <div>
@@ -35,6 +49,7 @@ export const SidebarNav = ({ showMenu }) => (
       </nav>
     </div>
     <nav>
+      <ThemeToggle />
       <SocialLink href="https://www.instagram.com/phillycheese93">Instagram</SocialLink>
       <SocialLink href="https://github.com/philcon93">Github</SocialLink>
       <SocialLink href="https://www.linkedin.com/in/philconnah/">Linkedin</SocialLink>
