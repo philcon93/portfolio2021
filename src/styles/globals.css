@@ -2,7 +2,7 @@
 
 @layer base {
     html, body {
-        @apply min-h-screen bg-gray-100 dark-mode:bg-gray-800;
+        @apply min-h-screen bg-gray-100 dark:bg-gray-800;
     }
 }
 

@@ -8,31 +8,37 @@ const defaultState = {
 export const ThemeContext = createContext(defaultState);
 
 export const ThemeProvider = ({ children }) => {
-    const [dark, setDark] = useState(false);
+    const [theme, setTheme] = useState(false);
+    const darkTheme = 'dark';
+    const lightTheme = 'light';
+
     useEffect(() => {
-        const lsDark = localStorage.getItem("dark");
-        if (lsDark !== null) {
-            setDark(JSON.parse(lsDark));
+        const theme = localStorage.getItem("theme");
+        if (theme !== null) {
+            setTheme(JSON.parse(theme));
         }
     }, []);
 
-    const toggleDark = () => {
+    const toggleTheme = () => {
         const d = document.documentElement;
-        const themes = ["light", "dark"];
+        const themes = [lightTheme, darkTheme];
 
-        if (dark) {
+        if (theme == darkTheme) {
             d.classList.remove(...themes);
-            d.classList.add("light");
+            d.classList.add(lightTheme);
+            localStorage.setItem("theme", JSON.stringify(lightTheme));
+            setTheme(lightTheme);
         } else {
-            d.setAttribute("class", "dark");
+            d.classList.remove(...themes);
+            d.classList.add(darkTheme);
+            // d.setAttribute("class", "dark");
+            localStorage.setItem("theme", JSON.stringify(darkTheme));
+            setTheme(darkTheme);
         }
-
-        localStorage.setItem("dark", JSON.stringify(!dark));
-        setDark(!dark);
     };
 
     return (
-        <ThemeContext.Provider value={{ dark, toggleDark }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );

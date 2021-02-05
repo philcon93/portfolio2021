@@ -13,16 +13,16 @@ class MyDocument extends Document {
                     dangerouslySetInnerHTML={{
                     __html: `
                         (function() {
-                        var storageKey = 'dark';
-                        var classNameDark = 'dark';
-                        var classNameLight = 'light';
+                        var storageKey = 'theme';
+                        var darkTheme = 'dark';
+                        var lightTheme = 'light';
                         var d = document.querySelector('html');
                         var localStorageTheme = null;
                         var localStorageExists = localStorageTheme !== null;
 
-                        function setClassOnDocumentBody(dark) {
-                            d.classList.add(dark ? classNameDark : classNameLight);
-                            d.classList.remove(dark ? classNameLight : classNameDark);
+                        function setClassOnDocumentBody(theme) {
+                            d.classList.remove(darkTheme, lightTheme);
+                            d.classList.add(theme);
                         }
                         try {
                             localStorageTheme = localStorage.getItem(storageKey);
@@ -30,12 +30,13 @@ class MyDocument extends Document {
 
                         if (localStorageExists) {
                             localStorageTheme = JSON.parse(localStorageTheme);
-                        }
-                        if (localStorageExists) {
                             setClassOnDocumentBody(localStorageTheme);
                         } else {
-                            var isDarkMode = d.classList.contains(classNameDark);
-                            localStorage.setItem(storageKey, JSON.stringify(isDarkMode));
+                            var isDarkMode = d.classList.contains(darkTheme);
+                            var theme = isDarkMode ? darkTheme : lightTheme;
+
+                            localStorage.setItem(storageKey, JSON.stringify(theme));
+                            setClassOnDocumentBody(theme);
                         }
                         })();
                     `,
