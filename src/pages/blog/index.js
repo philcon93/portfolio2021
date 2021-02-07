@@ -1,5 +1,5 @@
 import { Intro, Posts } from '../../components';
-import { getAllPosts } from '../../utilities/api';
+import { getAllPosts, postsDirectory } from '../../utilities/api';
 import Head from 'next/head';
 import { CMS_NAME } from '../../utilities/constants';
 import PropTypes from 'prop-types';
@@ -29,14 +29,10 @@ export default function Index({ posts }) {
 }
 
 export async function getStaticProps() {
-  const posts = getAllPosts([
-    'title',
-    'date',
-    'slug',
-    'author',
-    'coverImage',
-    'excerpt',
-  ])
+  const posts = getAllPosts(
+    [ 'date', 'excerpt', 'title', 'slug' ],
+    postsDirectory
+  );
 
   return {
     props: { posts },

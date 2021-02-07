@@ -1,23 +1,25 @@
-import fs from 'fs'
-import { join } from 'path'
-import matter from 'gray-matter'
+import fs from 'fs';
+import { join } from 'path';
+import matter from 'gray-matter';
 
-const postsDirectory = join(process.cwd(), 'src/posts');
-const sketchesDirectory = join(process.cwd(), 'src/sketches');
+export const postsDirectory = join(process.cwd(), 'src/posts');
+export const sketchesDirectory = join(process.cwd(), 'src/sketches');
 
-export const getPostSlugs = () => {
-  return fs.readdirSync(postsDirectory);
-}
+export const postsFilePaths = fs
+  .readdirSync(postsDirectory)
+  // Only include md(x) files
+  .filter(path => /\.mdx?$/.test(path))
 
-export const getSketchSlugs = () => {
-  return fs.readdirSync(sketchesDirectory);
-}
+export const sketchesFilePaths = fs
+  .readdirSync(sketchesDirectory)
+  // Only include md(x) files
+  .filter(path => /\.mdx?$/.test(path))
 
 export const getContent = (slug, fields = [], directory = postsDirectory) => {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = join(directory, `${realSlug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
+  const { content, data } = matter(fileContents);
 
   const items = {};
 
@@ -38,20 +40,11 @@ export const getContent = (slug, fields = [], directory = postsDirectory) => {
   return items;
 }
 
-export const getAllPosts = (fields = []) => {
-  const slugs = getPostSlugs();
+export const getAllPosts = (fields = [], directory = postsDirectory) => {
+  const slugs = fs.readdirSync(directory);
   const posts = slugs
-    .map((slug) => getContent(slug, fields))
+    .map((slug) => getContent(slug, fields, directory))
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? '-1' : '1'));
   return posts;
-}
-
-export const getAllSketches = (fields = []) => {
-  const slugs = getSketchSlugs();
-  const sketches = slugs
-    .map((slug) => getContent(slug, fields, sketchesDirectory))
-    // sort sketches by date in descending order
-    .sort((sketch1, sketch2) => (sketch1.date > sketch2.date ? '-1' : '1'));
-  return sketches;
 }

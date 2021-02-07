@@ -1,76 +1,71 @@
-import { useRouter } from 'next/router';
-import ErrorPage from 'next/error';
-import { PostBody, PostHeader, PostTitle } from '../../components';
-import { getContent, getAllPosts } from '../../utilities/api';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import hydrate from 'next-mdx-remote/hydrate';
+import renderToString from 'next-mdx-remote/render-to-string';
+import { PostBody, PostHeader } from '../../components';
+import { sketchesFilePaths, sketchesDirectory } from '../../utilities/api';
 import { CMS_NAME } from '../../utilities/constants';
+import dynamic from 'next/dynamic';
 import Head from 'next/head';
-import markdownToHtml from '../../utilities/markdownToHtml';
 import PropTypes from 'prop-types';
 
-export default function Post({ post }) {
-  const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
-  }
+const components = {
+  // a: CustomLink,
+  PostTitle: dynamic(() =>
+    import('../../components/post-title').then((mod) => mod.PostTitle)),
+  // PostTitle: PostTitle
+}
+
+export default function Post({ source, frontMatter}) {
+  const content = hydrate(source, { components });
+
   return (
     <>
-        {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
-        ) : (
-          <>
-            <article className="mb-32">
-              <Head>
-                <title>{CMS_NAME} | {post.title}</title>
-                <meta property="og:image" content={post.ogImage.url} />
-              </Head>
-              <PostHeader
-                title={post.title}
-                date={post.date} />
-              <PostBody content={post.content} />
-            </article>
-          </>
-        )}
+      <article className="mb-32">
+        <Head>
+          <title>{CMS_NAME} | {frontMatter.title}</title>
+          <meta property="og:image" content={frontMatter.ogImage.url} />
+        </Head>
+        <PostHeader
+          title={frontMatter.title}
+          date={frontMatter.date} />
+        <PostBody content={content} />
+      </article>
     </>
   )
 }
 
-export async function getStaticProps({ params }) {
-  const post = getContent(params.slug, [
-    'title',
-    'date',
-    'slug',
-    'author',
-    'content',
-    'ogImage',
-    'coverImage',
-  ])
-  const content = await markdownToHtml(post.content || '')
+export const getStaticProps = async ({ params }) => {
+  const postFilePath = path.join(sketchesDirectory, `${params.slug}.mdx`);
+  const source = fs.readFileSync(postFilePath);
+
+  const { content, data } = matter(source);
+
+  const mdxSource = await renderToString(content, { components });
 
   return {
     props: {
-      post: {
-        ...post,
-        content,
-      },
+      source: mdxSource,
+      frontMatter: data
     },
   }
 }
 
-export async function getStaticPaths() {
-  const posts = getAllPosts(['slug'])
+export const getStaticPaths = async () => {
+  const paths = sketchesFilePaths
+    // Remove file extensions for page paths
+    .map((path) => path.replace(/\.mdx?$/, ''))
+    // Map the path into the static paths object required by Next.js
+    .map((slug) => ({ params: { slug } }))
 
   return {
-    paths: posts.map((post) => {
-      return {
-        params: {
-          slug: post.slug,
-        },
-      }
-    }),
-    fallback: false,
+    paths,
+    fallback: false
   }
 }
 
 Post.propTypes = {
-  post: PropTypes.object
+  source: PropTypes.object,
+  frontMatter: PropTypes.object
 };
