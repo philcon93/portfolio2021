@@ -6,12 +6,13 @@ export const PostPreview = ({
   title,
   date,
   excerpt,
+  directory,
   slug,
 }) => {
   return (
     <div>
       <h3 className="text-2xl mb-3 leading-snug">
-        <Link as={`/blog/${slug}`} href="/blog/[slug]">
+        <Link as={`/${directory}/${slug}`} href={`/${directory}/[slug]`}>
           <a className="hover:underline">{title}</a>
         </Link>
       </h3>
@@ -27,5 +28,6 @@ PostPreview.propTypes = {
   title: PropTypes.string,
   date: PropTypes.string,
   excerpt: PropTypes.string,
+  directory: PropTypes.string,
   slug: PropTypes.string
 };

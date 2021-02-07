@@ -6,7 +6,7 @@ export const PostHeader = ({ title, date }) => {
     <>
       <PostTitle>{title}</PostTitle>
       <div className="max-w-2xl mx-auto">
-        <div className="mb-3">
+        <div className="mb-3 font-bold">
           <DateFormatter dateString={date} />
         </div>
       </div>

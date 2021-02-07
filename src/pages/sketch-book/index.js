@@ -1,5 +1,5 @@
 import { Intro, Posts } from '../../components';
-import { getSketchSlugs } from '../../utilities/api';
+import { getAllSketches } from '../../utilities/api';
 import Head from 'next/head';
 import { CMS_NAME } from '../../utilities/constants';
 import PropTypes from 'prop-types';
@@ -22,18 +22,25 @@ export default function Index({ sketches }) {
             </>
           }/>
         {
-          sketches.length > 0 ? <Posts posts={sketches} /> : null
+          sketches.length > 0 ? <Posts directory="sketch-book" posts={sketches} /> : null
         }
     </>
   )
 }
 
 export async function getStaticProps() {
-    console.log(getSketchSlugs())
+  const sketches = getAllSketches([
+    'title',
+    'date',
+    'slug',
+    'author',
+    'coverImage',
+    'excerpt',
+  ])
 
-    return {
-        props: { sketches: [] },
-    }
+  return {
+    props: { sketches },
+  }
 }
 
 Index.propTypes = {

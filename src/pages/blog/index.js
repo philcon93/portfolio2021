@@ -22,7 +22,7 @@ export default function Index({ posts }) {
             </> 
           } />
         {
-          posts.length > 0 ? <Posts posts={posts} /> : null
+          posts.length > 0 ? <Posts directory="blog" posts={posts} /> : null
         }
     </>
   )
