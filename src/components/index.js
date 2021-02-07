@@ -1,6 +1,4 @@
-export { Avatar } from './avatar';
 export { AboutInfo } from './about-info';
-export { CoverImage } from './cover-image';
 export { DateFormatter } from './date-formatter';
 export { Intro } from './intro';
 export { MenuToggle } from './menu-toggle';

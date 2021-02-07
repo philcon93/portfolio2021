@@ -11,17 +11,14 @@ export default function Index({ sketches }) {
           <title>{CMS_NAME} | Sketches</title>
         </Head>
         <Intro 
-          title="Sketch."
+          title="Sketch book."
           subtitle={
             <>
-              A statically generated blog example using{' '}
+              A{' '}
               <a
-                href="https://nextjs.org/"
+                href="https://processing.org/"
                 className="underline hover:text-success duration-200 transition-colors"
-              >
-                Next.js
-              </a>{' '}
-              and {CMS_NAME}.
+              >Processing</a> term, it gives a means to &apos;sketch&apos; ideas in code.
             </>
           }/>
         {

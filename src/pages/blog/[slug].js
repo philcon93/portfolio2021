@@ -25,10 +25,7 @@ export default function Post({ post }) {
               </Head>
               <PostHeader
                 title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
-              />
+                date={post.date} />
               <PostBody content={post.content} />
             </article>
           </>

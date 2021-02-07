@@ -14,14 +14,11 @@ export default function Index({ posts }) {
           title="Blog."
           subtitle={
             <>
-              A statically generated blog example using{' '}
+              A statically generated blog of my thoughts, using{' '}
               <a
                 href="https://nextjs.org/"
                 className="underline hover:text-success duration-200 transition-colors"
-              >
-                Next.js
-              </a>{' '}
-              and {CMS_NAME}.
+              >Next.js</a>.
             </> 
           } />
         {

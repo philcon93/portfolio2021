@@ -3,7 +3,7 @@ import { join } from 'path'
 import matter from 'gray-matter'
 
 const postsDirectory = join(process.cwd(), 'src/posts');
-const sketchesDirectory = join(process.cwd(), 'src/pages/sketch');
+const sketchesDirectory = join(process.cwd(), 'src/pages/sketch-book');
 
 export const getPostSlugs = () => {
   return fs.readdirSync(postsDirectory);
