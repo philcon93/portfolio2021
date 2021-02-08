@@ -12,9 +12,8 @@ import PropTypes from 'prop-types';
 
 const components = {
   // a: CustomLink,
-  PostTitle: dynamic(() =>
-    import('../../components/post-title').then((mod) => mod.PostTitle)),
-  // PostTitle: PostTitle
+  XmasTrees: dynamic(() =>
+    import('../../components/dataviz/xmas-trees').then((mod) => mod.XmasTrees))
 }
 
 export default function Post({ source, frontMatter}) {
