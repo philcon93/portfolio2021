@@ -41,6 +41,6 @@ export const XmasTrees = ({ dataset, height, width }) => {
 
 XmasTrees.propTypes = {
   dataset: PropTypes.string,
-  height: PropTypes.string,
-  width: PropTypes.string
+  height: PropTypes.number,
+  width: PropTypes.number
 };

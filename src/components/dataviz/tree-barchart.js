@@ -52,13 +52,13 @@ export const Barchart = ({ data, value, width, y}) => {
 
 TreeBar.propTypes = {
   count: PropTypes.number,
-  x: PropTypes.string,
-  y: PropTypes.string
+  x: PropTypes.number,
+  y: PropTypes.number
 };
 
 Barchart.propTypes = {
   data: PropTypes.array,
   value: PropTypes.string,
   width: PropTypes.number,
-  y: PropTypes.string
+  y: PropTypes.number
 };
