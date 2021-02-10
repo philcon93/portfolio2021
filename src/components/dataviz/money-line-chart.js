@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
+import { LineChart } from './line-chart';
 
 export const MoneyLineChart = ({ dataset, height, width }) => {
   const [ data, setData ] = useState(null);
@@ -12,18 +13,22 @@ export const MoneyLineChart = ({ dataset, height, width }) => {
     })).then(data => setData(data));
   }, []);
 
-
   return (
     data ? (
       <svg width={width} height={height}>
-        
+        <LineChart
+            data={data}
+            x={0}
+            y={0}
+            width={width/1.25}
+            height={height/3} />
       </svg>
     ) : null
   )
 }
 
 MoneyLineChart.propTypes = {
-  dataset: PropTypes.string,
-  height: PropTypes.string,
-  width: PropTypes.string
+    dataset: PropTypes.string,
+    height: PropTypes.number,
+    width: PropTypes.number
 };
