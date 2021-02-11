@@ -12,6 +12,8 @@ import PropTypes from 'prop-types';
 
 const components = {
   // a: CustomLink,
+  MoneyLineChart: dynamic(() =>
+    import('../../components/dataviz/money-line-chart').then((mod) => mod.MoneyLineChart)),
   XmasTrees: dynamic(() =>
     import('../../components/dataviz/xmas-trees').then((mod) => mod.XmasTrees))
 }
