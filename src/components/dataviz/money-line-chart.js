@@ -18,8 +18,8 @@ export const MoneyLineChart = ({ dataset, height, width }) => {
       <svg width={width} height={height}>
         <LineChart
             data={data}
-            x={0}
-            y={0}
+            x={25}
+            y={50}
             width={width/1.25}
             height={height/3} />
       </svg>
