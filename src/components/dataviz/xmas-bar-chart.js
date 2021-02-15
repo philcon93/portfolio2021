@@ -24,14 +24,14 @@ const VerticalBarchart = ({ data, width, height, value }) => {
             return (
             <g key={d.movie}>
                 <rect
-                x={0}
-                y={yScale(d.movie)}
-                height={yScale.bandwidth()}
-                width={widthScale(value(d))}
-                style={{
-                    fill: 'green',
-                    transition: 'width 500ms, y 0.8s'
-                    }} />
+                    x={0}
+                    y={yScale(d.movie)}
+                    height={yScale.bandwidth()}
+                    width={widthScale(value(d))}
+                    style={{
+                        fill: 'green',
+                        transition: 'width 500ms, y 0.8s'
+                        }} />
                 <title>{title}</title>
                 <text
                     x={10}
