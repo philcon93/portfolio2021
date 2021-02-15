@@ -14,6 +14,8 @@ const components = {
   // a: CustomLink,
   MoneyLineChart: dynamic(() =>
     import('../../components/dataviz/money-line-chart').then((mod) => mod.MoneyLineChart)),
+  XmasBarChart: dynamic(() =>
+    import('../../components/dataviz/xmas-bar-chart').then((mod) => mod.XmasBarChart)),
   XmasTrees: dynamic(() =>
     import('../../components/dataviz/xmas-trees').then((mod) => mod.XmasTrees))
 }
