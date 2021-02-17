@@ -12,8 +12,8 @@ import PropTypes from 'prop-types';
 
 const components = {
   // a: CustomLink,
-  GroupedBarChart: dynamic(() => 
-    import('../../components/dataviz/grouped-bar-chart').then((mod) => mod.GroupedBarChart)),
+  StackedChart: dynamic(() => 
+    import('../../components/dataviz/stacked-bar-chart').then((mod) => mod.StackedChart)),
   MoneyLineChart: dynamic(() =>
     import('../../components/dataviz/money-line-chart').then((mod) => mod.MoneyLineChart)),
   MovieBarChart: dynamic(() =>
