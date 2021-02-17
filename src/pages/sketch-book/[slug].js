@@ -12,10 +12,12 @@ import PropTypes from 'prop-types';
 
 const components = {
   // a: CustomLink,
+  GroupedBarChart: dynamic(() => 
+    import('../../components/dataviz/grouped-bar-chart').then((mod) => mod.GroupedBarChart)),
   MoneyLineChart: dynamic(() =>
     import('../../components/dataviz/money-line-chart').then((mod) => mod.MoneyLineChart)),
-  XmasBarChart: dynamic(() =>
-    import('../../components/dataviz/xmas-bar-chart').then((mod) => mod.XmasBarChart)),
+  MovieBarChart: dynamic(() =>
+    import('../../components/dataviz/movie-bar-chart').then((mod) => mod.MovieBarChart)),
   XmasTrees: dynamic(() =>
     import('../../components/dataviz/xmas-trees').then((mod) => mod.XmasTrees))
 }
@@ -28,11 +30,11 @@ export default function Post({ source, frontMatter}) {
       <article className="mb-32">
         <Head>
           <title>{CMS_NAME} | {frontMatter.title}</title>
-          <meta property="og:image" content={frontMatter.ogImage.url} />
         </Head>
         <PostHeader
           title={frontMatter.title}
           date={frontMatter.date} />
+          <p>{frontMatter.excerpt}</p>
         <PostBody content={content} />
       </article>
     </>
