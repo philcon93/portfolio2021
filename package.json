@@ -9,8 +9,10 @@
     "lint": "./node_modules/.bin/eslint ./src"
   },
   "dependencies": {
+    "chroma-js": "^2.1.0",
     "classnames": "^2.2.6",
     "d3": "^6.5.0",
+    "d3-svg-legend": "^2.25.6",
     "d3blackbox": "^1.2.0",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
