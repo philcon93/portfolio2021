@@ -16,7 +16,6 @@ export const CarolsWordCloud = ({ dataset, height, width }) => {
   }, []);
 
   const getWords = () => {
-    console.log(chosenCarol);
     if (data === null) {
       return [];
     }

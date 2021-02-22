@@ -12,7 +12,7 @@ const count = (words) => {
     }
 
     return counts;
-}
+};
 
 const createCloud = ({ words, width, height }) => {
     return new Promise(resolve => {
@@ -31,7 +31,6 @@ const createCloud = ({ words, width, height }) => {
             .map(word => ({ word }))
         )
         .padding(5)
-        // .font("Impact")
         .fontSize(d => fontSize(counts[d.word]))
         .text(d => d.word)
         .on("end", resolve);
@@ -89,8 +88,8 @@ export const WordCloud = ({ forCarol, words, height, width }) => {
                 ))
             }
         </g>
-    )
-}
+    );
+};
 
 Word.propTypes = {
     children: PropTypes.string,
