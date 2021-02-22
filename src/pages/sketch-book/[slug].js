@@ -12,6 +12,8 @@ import PropTypes from 'prop-types';
 
 const components = {
   // a: CustomLink,
+  CarolsWordCloud: dynamic(() =>
+    import('../../components/dataviz/carols-word-cloud').then((mod) => mod.CarolsWordCloud)),
   StackedChart: dynamic(() => 
     import('../../components/dataviz/stacked-bar-chart').then((mod) => mod.StackedChart)),
   MoneyLineChart: dynamic(() =>
