@@ -13,7 +13,7 @@ const MyApp = ({ Component, pageProps }) => {
         <SidebarNav showMenu={toggleMenu} />
         <div className="w-full">
           <MenuToggle toggle={() => setToggleMenu(!toggleMenu)} />
-          <div className="p-4 md:p-8 lg:max-w-xl lg:mx-auto text-gray-600 dark:text-gray-300">
+          <div className="p-4 md:p-8 lg:max-w-2xl lg:mx-auto text-gray-600 dark:text-gray-300">
             <Component {...pageProps} />
           </div>
         </div>
