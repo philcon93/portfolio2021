@@ -10,7 +10,7 @@ export const PostPreview = ({
   slug,
 }) => {
   return (
-    <div>
+    <div className="pb-4">
       <h3 className="text-2xl mb-3 leading-snug">
         <Link as={`/${directory}/${slug}`} href={`/${directory}/[slug]`}>
           <a className="hover:underline">{title}</a>
@@ -19,7 +19,10 @@ export const PostPreview = ({
       <div className="font-bold mb-2">
         <DateFormatter dateString={date} />
       </div>
-      <p className="leading-relaxed mb-4">{excerpt}</p>
+      {
+        excerpt &&
+          <p className="leading-relaxed mb-4">{excerpt}</p>
+      }
     </div>
   )
 };

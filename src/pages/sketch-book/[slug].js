@@ -14,6 +14,8 @@ const components = {
   // a: CustomLink,
   CarolsWordCloud: dynamic(() =>
     import('../../components/dataviz/carols-word-cloud').then((mod) => mod.CarolsWordCloud)),
+  DonutWrapper: dynamic(() =>
+    import('../../components/dataviz/donut').then((mod) => mod.DonutWrapper)),
   StackedChart: dynamic(() => 
     import('../../components/dataviz/stacked-bar-chart').then((mod) => mod.StackedChart)),
   MoneyLineChart: dynamic(() =>
@@ -36,7 +38,10 @@ export default function Post({ source, frontMatter}) {
         <PostHeader
           title={frontMatter.title}
           date={frontMatter.date} />
-          <p>{frontMatter.excerpt}</p>
+          {
+            frontMatter.excerpt &&
+              <p>{frontMatter.excerpt}</p>
+          }
         <PostBody content={content} />
       </article>
     </>
