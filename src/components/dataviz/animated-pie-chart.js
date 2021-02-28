@@ -44,18 +44,21 @@ const arcTween = (oldData, newData, arc) => {
 const Arc = (props) =>  {
     const [ color, setColor] = useState(props.color);
     const [ origCol, setOrigCol ]  = useState(props.color);
+
     const ref = useRef();
     const arc = d3
       .arc()
       .innerRadius(80)
       .outerRadius(150)
-      .cornerRadius(8);
+      .cornerRadius(8)
+      .padAngle(0.01);
 
     const [ d, setD ] = useState(props.d);
     const [ pathD, setPathD ] = useState(arc(props.d));
 
     useEffect(() => {
         setColor(props.color);
+        setOrigCol(props.color);
 
         d3.select(ref.current)
         .transition()
@@ -70,10 +73,16 @@ const Arc = (props) =>  {
   
     const hover = () => {
       setColor(color.saturate(2));
+      if (props.onMouseOver) {
+        props.onMouseOver();
+      }
     };
   
     const unhover = () => {
       setColor(origCol);
+      if (props.onMouseOut) {
+        props.onMouseOut();
+      }
     };
   
     return (
@@ -105,14 +114,34 @@ const PieChart = ({ groupBy, data, x, y }) => {
         <g transform={`translate(${x}, ${y})`}>
           {
             pie(_data).map((d, index) => {
-                return <Arc d={d} color={colorScale(colorIndex(d.data.item))} key={index} />;
+                return (
+                    <Arc
+                        d={d}
+                        color={colorScale(colorIndex(d.data.item))}
+                        onMouseOver={() => setSelected(d.index)}
+                        onMouseOut={() => setSelected(null)}
+                        key={index} />
+                );
             })}
-            <text x="0" textAnchor="middle">
-                {data.length}
-            </text>
-            <text y="18" x="0" textAnchor="middle">
-                datapoints
-            </text>
+            {
+                selected !== null ?
+                    <>
+                        <text x="0" textAnchor="middle">
+                            {_data[selected].item}
+                        </text>
+                        <text y="18" x="0" textAnchor="middle">
+                            ${_data[selected].amount.toFixed(2)}
+                        </text>
+                    </> :
+                    <>
+                        <text x="0" textAnchor="middle">
+                            {data.length}
+                        </text>
+                        <text y="18" x="0" textAnchor="middle">
+                            datapoints
+                        </text>
+                    </>
+            }
         </g>
     );
 };
@@ -175,6 +204,13 @@ export const AnimatedPieChart = ({ dataset, height, width }) => {
       </svg>
     ) : null
   )
+}
+
+Arc.propTypes = {
+    color: PropTypes.object,
+    d: PropTypes.object,
+    onMouseOver: PropTypes.func,
+    onMouseOut: PropTypes.func
 }
 
 PieChart.propTypes = {
