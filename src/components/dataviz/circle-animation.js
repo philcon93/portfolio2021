@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
   
-const HybridExample = ({ explode, x, y }) => {
-    const [radius, setRadius] = useState(10);
-    const N = 12;
+const HybridExample = ({ r = 12, explode, x, y }) => {
+    const [radius, setRadius] = useState(r);
     const angleScale = d3
       .scaleLinear()
-      .domain([0, N])
+      .domain([0, r])
       .range([0, Math.PI * 2]);
   
     useEffect(() => {
@@ -30,7 +29,7 @@ const HybridExample = ({ explode, x, y }) => {
   
     return (
       <g transform={`translate(${x}, ${y})`}>
-        {d3.range(N).map((i) => (
+        {d3.range(r).map((i) => (
           <rect
             key={i}
             x={Math.cos(angleScale(i)) * radius}
