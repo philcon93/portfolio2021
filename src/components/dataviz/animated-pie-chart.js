@@ -87,36 +87,26 @@ const Arc = (props) =>  {
     );
 };
 
-const PieChart = ({ color, groupBy, data, x, y, r }) => {
+const PieChart = ({ groupBy, data, x, y }) => {
     const [ selected, setSelected ] = useState(null);
     const pie = d3
         .pie()
         .value(d => d.amount)
         .sortValues(d => d.item);
-    const arc = d3
-        .arc()
-        .innerRadius(90)
-        .outerRadius(r)
-        .padAngle(0.01);
+    const items = Object.keys(groupByFunc(data, groupBy));
+    const colorScale = chroma.scale("PuBu").domain([1,0]);
+    const colorIndex = d3.scaleOrdinal()
+        .domain(items)
+        .range(items.map((_, index) => index / items.length));
 
     const _data = groupByFunc(data, groupBy);
 
     return (
         <g transform={`translate(${x}, ${y})`}>
           {
-            pie(_data).map((d, index) =>
-            //   <path
-            //     d={arc
-            //       .innerRadius(selected === d.index ? 85 : 90)
-            //       .outerRadius(selected === d.index ? r + 10 : r)
-            //       .padAngle(selected === d.index ? 0.03 : 0.01)(d)}
-            //     fill={color(d)}
-            //     onMouseOver={() => setSelected(d.index)}
-            //     onMouseOut={() => setSelected(null)}
-            //     key={index} />
-                <Arc d={d} color={color(d)} key={index} />
-            )
-          }
+            pie(_data).map((d, index) => {
+                return <Arc d={d} color={colorScale(colorIndex(d.data.item))} key={index} />;
+            })}
             <text x="0" textAnchor="middle">
                 {data.length}
             </text>
@@ -132,8 +122,6 @@ export const AnimatedPieChart = ({ dataset, height, width }) => {
   const [ trickle, setTrickle ] = useState(false);
   const [ cachedData, setCachedData ] = useState([]);
   const [ cacheIndex, setCacheIndex ] = useState(0);
-  let colorScale = chroma.scale("PuBu").domain([1,0]);
-  let colorIndex = d3.scaleOrdinal();
   let timer = null;
 
   useEffect(() => {
@@ -141,28 +129,19 @@ export const AnimatedPieChart = ({ dataset, height, width }) => {
         ...data,
         amount: Number(data["Amount"].replace(",", ""))
     })).then(data => {
-        const items = Object.keys(
-            groupByFunc(data, d => d.Item.split(", ").sort())
-        );
-
-        console.log(items);
-    
-        colorScale.colors(items);
-        colorIndex
-            .domain(items)
-            .range(items.map((_, index) => index / items.length));
-
-        console.log(colorScale(0.5))
-
-        setData(data);
+        setCachedData(data);
         setCacheIndex(0);
-        // startTrickle();
+        setTrickle(true);
     });
+    return () => {
+        setData([]);
+        setCachedData([]);
+        setCacheIndex(0);
+    }
   }, []);
 
-//   useEffect(() => {
-//       if (trickle) {
-    const startTrickle = () => {
+  useEffect(() => {
+      if (trickle) {
         timer = setInterval(() => {
             if (cacheIndex < cachedData.length) {
                 setData(prevState => {
@@ -173,13 +152,12 @@ export const AnimatedPieChart = ({ dataset, height, width }) => {
                 });
                 setCacheIndex(cacheIndex + 1);
             } else {
-              stop();
+            stop();
             }
         }, 100);
-    };
-
-//       return () => stop();
-//   }, [ data ])
+    }
+    return () => stop();
+  }, [ trickle, cacheIndex, cachedData ])
 
   const stop = () => {
     clearInterval(timer);
@@ -190,10 +168,6 @@ export const AnimatedPieChart = ({ dataset, height, width }) => {
       <svg width={width} height={height}>
         <PieChart
             data={data}
-            color={d => {
-                // console.log(colorScale(colorIndex(d.data.item)));
-                return colorScale(colorIndex(d.data.item));
-            }}
             groupBy={(d) => d.Item.split(", ").sort()}
             x={200}
             y={200}
@@ -204,12 +178,10 @@ export const AnimatedPieChart = ({ dataset, height, width }) => {
 }
 
 PieChart.propTypes = {
-    color: PropTypes.func,
     data: PropTypes.array,
     groupBy: PropTypes.func,
     x: PropTypes.number,
-    y: PropTypes.number,
-    r: PropTypes.number
+    y: PropTypes.number
 };
 
 AnimatedPieChart.propTypes = {
