@@ -12,6 +12,8 @@ import PropTypes from 'prop-types';
 
 const components = {
   // a: CustomLink,
+  AnimatedPieChart: dynamic(() =>
+    import('../../components/dataviz/animated-pie-chart').then((mod) => mod.AnimatedPieChart)),
   CarolsWordCloud: dynamic(() =>
     import('../../components/dataviz/carols-word-cloud').then((mod) => mod.CarolsWordCloud)),
   DonutWrapper: dynamic(() =>
