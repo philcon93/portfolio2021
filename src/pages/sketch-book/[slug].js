@@ -14,6 +14,8 @@ const components = {
   // a: CustomLink,
   AnimatedPieChart: dynamic(() =>
     import('../../components/dataviz/animated-pie-chart').then((mod) => mod.AnimatedPieChart)),
+  CircleAnimation: dynamic(() =>
+    import('../../components/dataviz/circle-animation').then((mod) => mod.CircleAnimation)),
   CarolsWordCloud: dynamic(() =>
     import('../../components/dataviz/carols-word-cloud').then((mod) => mod.CarolsWordCloud)),
   DonutWrapper: dynamic(() =>
