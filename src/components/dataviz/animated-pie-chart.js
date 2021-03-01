@@ -103,7 +103,7 @@ const PieChart = ({ groupBy, data, x, y }) => {
         .value(d => d.amount)
         .sortValues(d => d.item);
     const items = Object.keys(groupByFunc(data, groupBy));
-    const colorScale = chroma.scale("PuBu").domain([1,0]);
+    const colorScale = chroma.scale("PuBu");
     const colorIndex = d3.scaleOrdinal()
         .domain(items)
         .range(items.map((_, index) => index / items.length));
@@ -146,7 +146,7 @@ const PieChart = ({ groupBy, data, x, y }) => {
     );
 };
 
-export const AnimatedPieChart = ({ dataset, height, width }) => {
+export const AnimatedPieChart = ({ dataset, title, height, width }) => {
   const [ data, setData ] = useState([]);
   const [ trickle, setTrickle ] = useState(false);
   const [ cachedData, setCachedData ] = useState([]);
@@ -193,16 +193,19 @@ export const AnimatedPieChart = ({ dataset, height, width }) => {
   };
 
   return (
-    data.length > 0 ? (
+    <>
+    { title && <p>{title}</p> }
+    { data.length > 0 ? (
       <svg width={width} height={height}>
         <PieChart
             data={data}
-            groupBy={(d) => d.Item.split(", ").sort()}
+            groupBy={(d) => d.Group.split(", ").sort()}
             x={200}
             y={200}
             r={150} />
       </svg>
-    ) : null
+    ) : null }
+    </>
   )
 }
 
@@ -222,6 +225,7 @@ PieChart.propTypes = {
 
 AnimatedPieChart.propTypes = {
     dataset: PropTypes.string,
+    title: PropTypes.string,
     height: PropTypes.number,
     width: PropTypes.number
 };
