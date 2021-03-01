@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
+import PropTypes from 'prop-types';
   
-const HybridExample = ({ r = 12, explode, x, y }) => {
+const CircleDots = ({ explode, r = 12, x, y }) => {
     const [radius, setRadius] = useState(r);
     const angleScale = d3
       .scaleLinear()
@@ -51,19 +52,19 @@ export const CircleAnimation = ({ width, height}) => {
         height={height}
         style={{ cursor: 'pointer' }}
         onClick={() => setExplode(!explode)}>
-        <HybridExample
+        <CircleDots
           explode={explode}
           width={width}
           height={height}
           x={250}
           y={250} />
-        <HybridExample
+        <CircleDots
           explode={explode}
           width={width}
           height={height}
           x={75}
           y={250} />
-        <HybridExample
+        <CircleDots
           explode={explode}
           width={width}
           height={height}
@@ -73,3 +74,14 @@ export const CircleAnimation = ({ width, height}) => {
   );
 };
 
+CircleDots.propTypes = {
+  explode: PropTypes.bool,
+  r: PropTypes.number,
+  x: PropTypes.number,
+  y: PropTypes.number
+};
+
+CircleAnimation.propTypes = {
+  height: PropTypes.number,
+  width: PropTypes.number
+};
