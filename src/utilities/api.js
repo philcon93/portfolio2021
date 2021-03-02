@@ -2,20 +2,14 @@ import fs from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
 
-export const postsDirectory = join(process.cwd(), 'src/posts');
 export const sketchesDirectory = join(process.cwd(), 'src/sketches');
-
-export const postsFilePaths = fs
-  .readdirSync(postsDirectory)
-  // Only include md(x) files
-  .filter(path => /\.mdx?$/.test(path))
 
 export const sketchesFilePaths = fs
   .readdirSync(sketchesDirectory)
   // Only include md(x) files
   .filter(path => /\.mdx?$/.test(path))
 
-export const getContent = (slug, fields = [], directory = postsDirectory) => {
+export const getContent = (slug, fields = [], directory = sketchesDirectory) => {
   const realSlug = slug.replace(/\.mdx$/, '');
   const fullPath = join(directory, `${realSlug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
@@ -40,7 +34,7 @@ export const getContent = (slug, fields = [], directory = postsDirectory) => {
   return items;
 }
 
-export const getAllPosts = (fields = [], directory = postsDirectory) => {
+export const getAllPosts = (fields = [], directory = sketchesDirectory) => {
   const slugs = fs.readdirSync(directory);
   const posts = slugs
     .map((slug) => getContent(slug, fields, directory))
