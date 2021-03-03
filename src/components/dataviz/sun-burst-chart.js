@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
 
@@ -37,7 +37,29 @@ const Labels = ({ datum, radius }) => {
     )
 }
 
+const arcTween = (oldData, newData, arc) => {
+    const dataCopy = { ...oldData };
+
+    return () => {
+        const startAngle = d3.interpolate(
+            oldData.x0,
+            newData.x0
+        );
+        const endAngle = d3.interpolate(
+            oldData.x1,
+            newData.x1
+        );
+  
+      return (t) => {
+        dataCopy.startAngle = startAngle(t);
+        dataCopy.endAngle = endAngle(t);
+        return arc(dataCopy);
+      };
+    };
+};
+
 const Arc = ({ children, d, fill, fillOpacity, radius, ...props }) => {
+    const ref = useRef();
     const arc = d3.arc()
         .startAngle(d => d.x0)
         .endAngle(d => d.x1)
@@ -45,10 +67,25 @@ const Arc = ({ children, d, fill, fillOpacity, radius, ...props }) => {
         .padRadius(radius * 1.5)
         .innerRadius(d => d.y0 * radius)
         .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1));
+    const [ data, setData ] = useState(d);
+    const [ pathData, setPathData ] = useState(arc(d));
+
+    useEffect(() => {
+        d3.select(ref.current)
+        .transition()
+        .duration(750)
+        .attr("d", arc(d))
+        .attrTween("d", arcTween(data, d, arc))
+        .on("end", () => {
+            setData(d);
+            setPathData(arc(d));
+        });
+    }, [ d ]);
 
     return (
         <path
-            d={arc(d)}
+            ref={ref}
+            d={pathData}
             fill={fill}
             fillOpacity={fillOpacity}
             style={{cursor: 'pointer'}}
@@ -59,6 +96,17 @@ const Arc = ({ children, d, fill, fillOpacity, radius, ...props }) => {
 }
 
 const SunBurst = ({ data, x, y, radius }) => {
+    const partition = data => {
+        const root = d3.hierarchy(data)
+            .sum(d => d.value)
+            .sort((a, b) => b.value - a.value);
+        return d3
+            .partition()
+            .size([2 * Math.PI, root.height + 1])(root);
+    };
+
+    const [ selected, setSelected ] = useState(null);
+    const [ datum, setDatum ] = useState(partition(data).descendants().slice(1));
     const format = d3.format(",d");
     const colorScale = d3
         .scaleOrdinal(d3.quantize(d3.interpolateRainbow, data.children.length + 1));
@@ -74,20 +122,29 @@ const SunBurst = ({ data, x, y, radius }) => {
         return d.y1 <= 3 && d.y0 >= 1 && d.x1 > d.x0;
     };
 
-    const onClick = () => {
-        console.log('click');
-    };
+    useEffect(() => {
+        console.log(selected);
+        if (selected !== null) {
+            setDatum(prevState => {
+                const aaa = data.children.map((d) => {
+                    return {
+                        ...d,
+                        x0: Math.max(0, Math.min(1, (d.x0 - selected.x0) / (selected.x1 - selected.x0))) * 2 * Math.PI,
+                        x1: Math.max(0, Math.min(1, (d.x1 - selected.x0) / (selected.x1 - selected.x0))) * 2 * Math.PI,
+                        y0: Math.max(0, d.y0 - selected.depth),
+                        y1: Math.max(0, d.y1 - selected.depth)
+                    }
+                });
+                console.log(data);
+                console.log('prevState', prevState);
+                console.log('newnew', aaa);
 
-    const partition = data => {
-        const root = d3.hierarchy(data)
-            .sum(d => d.value)
-            .sort((a, b) => b.value - a.value);
-        return d3
-            .partition()
-            .size([2 * Math.PI, root.height + 1])(root);
-    };
-
-    const datum = partition(data).descendants().slice(1);
+                return prevState;
+            })
+        } else {
+            setDatum(partition(data).descendants().slice(1));
+        }
+    }, [ selected ]);
 
     // console.log(data);
     // console.log(datum);
@@ -101,7 +158,7 @@ const SunBurst = ({ data, x, y, radius }) => {
                         fill={colorPicker(d)}
                         fillOpacity={arcVisible(d) ? (d.children ? 0.6 : 0.4) : 0}
                         radius={radius}
-                        onClick={onClick}
+                        onClick={() => setSelected(d)}
                         key={index}>
                         <title>
                             {
@@ -120,7 +177,7 @@ const SunBurst = ({ data, x, y, radius }) => {
                 r={radius}
                 fill="none"
                 pointerEvents="all"
-                onClick={onClick} />
+                onClick={() => setSelected(null)} />
         </g>
     );
 };
