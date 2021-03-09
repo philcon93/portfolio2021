@@ -16,13 +16,13 @@ export const PostPreview = ({
           <a className="hover:underline">{title}</a>
         </Link>
       </h3>
-      <div className="font-bold mb-2">
-        <DateFormatter dateString={date} />
-      </div>
       {
         excerpt &&
-          <p className="leading-relaxed mb-4">{excerpt}</p>
+          <p className="leading-relaxed mb-3">{excerpt}</p>
       }
+      <div className="font-bold mb-3">
+        <DateFormatter dateString={date} />
+      </div>
     </div>
   )
 };
