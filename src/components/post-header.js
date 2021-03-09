@@ -1,14 +1,15 @@
 import { DateFormatter, PostTitle } from '../components';
 import PropTypes from 'prop-types';
 
-export const PostHeader = ({ title, date }) => {
+export const PostHeader = ({ title, date, excerpt }) => {
   return (
     <>
       <PostTitle>{title}</PostTitle>
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-3 font-bold">
-          <DateFormatter dateString={date} />
-        </div>
+      {
+        excerpt && <p>{excerpt}</p>
+      }
+      <div className="max-w-2xl mx-auto mb-3 font-bold">
+        <DateFormatter dateString={date} />
       </div>
     </>
   )
@@ -16,5 +17,6 @@ export const PostHeader = ({ title, date }) => {
 
 PostHeader.propTypes = {
   title: PropTypes.string,
-  date: PropTypes.string
+  date: PropTypes.string,
+  excerpt: PropTypes.string
 };

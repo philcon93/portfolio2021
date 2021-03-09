@@ -30,6 +30,8 @@ const components = {
     import('../../components/dataviz/money-line-chart').then((mod) => mod.MoneyLineChart)),
   MovieBarChart: dynamic(() =>
     import('../../components/dataviz/movie-bar-chart').then((mod) => mod.MovieBarChart)),
+  ResponsiveChart: dynamic(() =>
+    import('../../components/dataviz/responsive-chart').then((mod) => mod.ResponsiveChart)),
   StackedChart: dynamic(() =>
     import('../../components/dataviz/stacked-bar-chart').then((mod) => mod.StackedChart)),
   TreeLayout: dynamic(() =>
@@ -51,11 +53,8 @@ export default function Post({ source, frontMatter}) {
         </Head>
         <PostHeader
           title={frontMatter.title}
-          date={frontMatter.date} />
-          {
-            frontMatter.excerpt &&
-              <p>{frontMatter.excerpt}</p>
-          }
+          date={frontMatter.date}
+          excerpt={frontMatter.excerpt} />
         <PostBody content={content} />
       </article>
     </>
