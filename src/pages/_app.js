@@ -1,11 +1,25 @@
 import '../styles/globals.css';
-import { useState } from 'react';
+import * as gtag from '../utilities/gtag';
+import { useEffect, useState } from 'react';
 import { MenuToggle, SidebarNav } from '../components';
+import { localEnvironment } from '../utilities/helpers';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from "../theme/theme-context";
+import { useRouter } from 'next/router';
 
 const MyApp = ({ Component, pageProps }) => {
   const [toggleMenu, setToggleMenu] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      !localEnvironment() && gtag.pageview(url);
+    }
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   return (
     <ThemeProvider>
