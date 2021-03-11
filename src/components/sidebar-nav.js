@@ -55,8 +55,8 @@ export const SidebarNav = ({ showMenu }) => (
         </a>
       </Link>
       <nav className="mt-8">
-        <NavItem href="/sketch-book">Sketch book</NavItem>
         <NavItem href="/about">About</NavItem>
+        <NavItem href="/sketch-book">Sketch book</NavItem>
       </nav>
     </div>
     <nav>
