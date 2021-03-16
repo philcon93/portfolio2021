@@ -14,6 +14,8 @@ const components = {
   // a: CustomLink,
   AnimatedPieChart: dynamic(() =>
     import('../../components/dataviz/animated-pie-chart').then((mod) => mod.AnimatedPieChart)),
+  CanvasClickMap: dynamic(() =>
+    import('../../components/dataviz/canvas-map-click').then((mod) => mod.CanvasClickMap)),
   CanvasMap: dynamic(() =>
     import('../../components/dataviz/canvas-map').then((mod) => mod.CanvasMap)),
   CircleAnimation: dynamic(() =>

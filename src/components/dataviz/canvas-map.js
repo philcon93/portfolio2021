@@ -9,7 +9,7 @@ export const CanvasMap = ({ dataset, height, width }) => {
     const projection = d3
         .geoOrthographic()
         .rotate([25, -35])
-        .fitSize([width, height], data)
+        .fitSize([width, height - 50], data)
     const geoGenerator = d3
         .geoPath()
         .projection(projection)
