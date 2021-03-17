@@ -4,8 +4,17 @@ import { sankey, sankeyLinkHorizontal } from "d3-sankey";
 import chroma from "chroma-js";
 import PropTypes from 'prop-types';
 
-const SankeyNode = ({ name, x0, x1, y0, y1, color, value }) => {
-    return <rect x={x0} y={y0} width={x1 - x0} height={y1 - y0} fill={color}>
+const SankeyNode = ({
+    name, x0, x1, y0, y1, color, value, hover, unhover
+}) => {
+    return <rect
+        x={x0}
+        y={y0}
+        width={x1 - x0}
+        height={y1 - y0}
+        fill={color}
+        onMouseOver={hover}
+        onMouseOut={unhover}>
       <title>{name} - {value}</title>
     </rect>
 };
@@ -34,6 +43,7 @@ const SankeyText = ({ name, x0, x1, y0, y1, width }) => {
 };
 
 const SnakeyWrapper = ({ data, width, height }) => {
+    const [ selected, setSelected ] = useState(null);
     const { nodes, links } = sankey()
         .nodeWidth(15)
         .nodePadding(25)
@@ -44,6 +54,10 @@ const SnakeyWrapper = ({ data, width, height }) => {
           .domain([0, nodes.length])
           .range([0, 1]);
 
+    useEffect(() => {
+        return () => setSelected(null)
+    }, []);
+
     return (
         <>
             <g style={{ mixBlendMode: "multiply" }}>
@@ -51,15 +65,31 @@ const SnakeyWrapper = ({ data, width, height }) => {
                     <SankeyNode
                         {...node}
                         color={color(colorScale(index)).hex()}
-                        key={node.name} />
+                        key={node.name}
+                        hover={() => setSelected(node)}
+                        unhover={() => setSelected(null)}/>
                 ))}
-                {links.map((link, index) => (
-                    <SankeyLink
+                {links.map((link, index) => {
+                    const selectedNode = () => {
+                        if (selected === null) {
+                            return true;
+                        }
+                        if ((link.source.name === selected.name) || (link.target.name === selected.name)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    };
+
+                    return <SankeyLink
                         key={index}
                         link={link}
-                        color={color(colorScale(link.source.index)).hex()}
-                    />
-                ))}
+                        color={
+                            color(colorScale(link.source.index))
+                                .alpha(selectedNode() ? 1 : 0.2)
+                                .hex()
+                            } />
+                })}
             </g>
             <g>
                 {nodes.map((node, index) => {
@@ -116,7 +146,9 @@ SankeyNode.propTypes = {
     y0: PropTypes.number,
     y1: PropTypes.number,
     color: PropTypes.string,
-    value: PropTypes.number
+    value: PropTypes.number,
+    hover: PropTypes.func,
+    unhover: PropTypes.func
 };
 
 SankeyLink.propTypes = {
