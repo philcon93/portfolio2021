@@ -14,6 +14,8 @@ const components = {
   // a: CustomLink,
   AnimatedPieChart: dynamic(() =>
     import('../../components/dataviz/animated-pie-chart').then((mod) => mod.AnimatedPieChart)),
+  AUStates: dynamic(() =>
+    import('../../components/dataviz/australia-states').then((mod) => mod.AUStates)),
   CanvasClickMap: dynamic(() =>
     import('../../components/dataviz/canvas-map-click').then((mod) => mod.CanvasClickMap)),
   CanvasMap: dynamic(() =>
@@ -36,6 +38,8 @@ const components = {
     import('../../components/dataviz/movie-bar-chart').then((mod) => mod.MovieBarChart)),
   ResponsiveChart: dynamic(() =>
     import('../../components/dataviz/responsive-chart').then((mod) => mod.ResponsiveChart)),
+  RoundDashboard: dynamic(() =>
+    import('../../components/dataviz/round-dashboard').then((mod) => mod.RoundDashboard)),
   Sankey: dynamic(() =>
     import('../../components/dataviz/sankey').then((mod) => mod.Sankey)),
   StackedChart: dynamic(() =>
