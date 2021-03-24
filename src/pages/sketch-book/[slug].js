@@ -48,6 +48,8 @@ const components = {
     import('../../components/dataviz/tree-layout').then((mod) => mod.TreeLayout)),
   TreeMapLayout: dynamic(() =>
     import('../../components/dataviz/treemap-layout').then((mod) => mod.TreeMapLayout)),
+  ViolinPlot: dynamic(() =>
+    import('../../components/dataviz/violin-plot').then((mod) => mod.ViolinPlot)),
   XmasTrees: dynamic(() =>
     import('../../components/dataviz/xmas-trees').then((mod) => mod.XmasTrees))
 }
