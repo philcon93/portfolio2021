@@ -23,56 +23,49 @@ const BottomAxis = ({ scale, x, y }) => {
     return <g ref={refAnchor} transform={`translate(${x}, ${y})`} />;
 };
 
-const Violins = ({ data, yScale, xScale, x, y }) => {
+const Violins = ({ data, yScale, xScale, y }) => {
     const histogram = d3.bin()
         .domain(yScale.domain())
         .thresholds(yScale.ticks(20))    // Important: how many bins approx are going to be made? It is the 'resolution' of the violin plot
         .value(d => d);
+    const sumstat = d3.group(data, d => d.Species)  // nest function allows to group the calculation per level of a factor
 
-    // Compute the binning for each group of the dataset
-    // const groups = d3.group(data, d => d.Species)  // nest function allows to group the calculation per level of a factor
-    const sumstat = d3.rollup(data, v => histogram(d => d.Sepal_Length), d => d.Species);  // For each key..
+    sumstat.forEach((value, key) => {
+        const input = value.map(v => {
+            return v.Sepal_Length;
+        });
+        const bins = histogram(input);
 
-    // console.log(sumstat);
+        sumstat.set(key, bins);
+    });
 
       // What is the biggest number of value in a bin? We need it cause this value will have a width of 100% of the bandwidth.
     let maxNum = 0;
-    sumstat.forEach((value, key) => {
-        console.log(value, key);
-
+    sumstat.forEach((value) => {
         const allBins = value;
-        console.log(allBins);
         const lengths = allBins.map((a) => a.length);
         const longest = d3.max(lengths);
 
-        if (longest > maxNum) { maxNum = longest }
+        if (longest > maxNum) {
+            maxNum = longest;
+        }
     });
-
-    console.log(maxNum);
 
     const xNum = d3.scaleLinear()
         .range([0, xScale.bandwidth()])
         .domain([ -maxNum, maxNum ]);
 
     return [...sumstat].map((data, i) => {
+        const area = d3.area()
+            .x0(d => xNum(-d.length))
+            .x1(d => xNum(d.length))
+            .y(d => yScale(d.x0))
+            .curve(d3.curveCatmullRom);
         return (
             <g key={i} transform={`translate(${xScale(data[0])}, ${y})`}>
-                {
-                    data[1].map((d, i) => {
-                        const area = d3.area()
-                            .x0(xNum(-d.length))
-                            .x1(xNum(d.length))
-                            .y(d.x0)
-                            .curve(d3.curveCatmullRom);
-
-                        // console.log(area(d))
-
-                        return <path
-                            key={i}
-                            d={area(d)}
-                            style={{ stroke: "none", fill: "#69b3a2"}} />
-                    })
-                }
+                <path
+                    d={area(data[1])}
+                    style={{ stroke: "none", fill: "#69b3a2"}} />
             </g>
         );
     });
@@ -99,15 +92,34 @@ export const ViolinPlot = ({ dataset, height, width }) => {
   return (
     data ? (
       <svg width={width} height={height}>
-        <g transform={`translate(40, 10)`}>
-        <Violins data={data} yScale={yScale} xScale={xScale} width={width} y={0} />
-        <BottomAxis scale={xScale} x={0} y={height - yMargin} />
-        <LeftAxis scale={yScale} x={0} y={0} />
-        </g>
+            <g transform={`translate(40, 10)`}>
+                <Violins data={data} yScale={yScale} xScale={xScale} width={width} y={0} />
+                <BottomAxis scale={xScale} x={0} y={height - yMargin} />
+                <LeftAxis scale={yScale} x={0} y={0} />
+            </g>
       </svg>
     ) : null
   )
 }
+
+LeftAxis.propTypes = {
+    scale: PropTypes.func,
+    x: PropTypes.number,
+    y: PropTypes.number
+};
+
+BottomAxis.propTypes = {
+    scale: PropTypes.func,
+    x: PropTypes.number,
+    y: PropTypes.number
+};
+
+Violins.propTypes = {
+    data: PropTypes.array,
+    yScale: PropTypes.func,
+    xScale: PropTypes.func,
+    y: PropTypes.number
+};
 
 ViolinPlot.propTypes = {
   dataset: PropTypes.string,
