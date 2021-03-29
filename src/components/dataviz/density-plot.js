@@ -67,7 +67,11 @@ const Density = ({ data, yScale, xScale, width }) => {
                 <path
                     d={line(density)}
                     style={{
-                        fill: colorScale(data[0]), opacity: ".6", stroke: "#000", strokeWidth:  "1", strokeLinejoin: "round"
+                        fill: colorScale(data[0]),
+                        opacity: ".6",
+                        stroke: "#000",
+                        strokeWidth: "1",
+                        strokeLinejoin: "round"
                     }} />
             </g>
             })
@@ -127,7 +131,7 @@ Legend.propTypes = {
     colorScale: PropTypes.func,
     x: PropTypes.number,
     y: PropTypes.number
-  };
+};
 
 Density.propTypes = {
     data: PropTypes.array,
