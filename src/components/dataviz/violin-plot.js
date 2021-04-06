@@ -31,9 +31,7 @@ const Violins = ({ data, yScale, xScale, y }) => {
     const sumstat = d3.group(data, d => d.Species)  // nest function allows to group the calculation per level of a factor
 
     sumstat.forEach((value, key) => {
-        const input = value.map(v => {
-            return v.Sepal_Length;
-        });
+        const input = value.map(v => v.Sepal_Length);
         const bins = histogram(input);
 
         sumstat.set(key, bins);
