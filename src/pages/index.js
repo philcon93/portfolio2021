@@ -15,7 +15,7 @@ export default function Home() {
           Hey there, my name is Phil! I have been working as a front end web developer for over 6 years, with a high end focus of ecommerce, user experience and accessibility.
         </p>
         <p>
-          I love designing, developing web applications, and understanding user behaviour!
+          I love developing web applications, visualizing data, and understanding user behaviour!
         </p>
       </div>
     </>
