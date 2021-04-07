@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { CMS_NAME } from '../utilities/constants';
-import { AboutInfo, Intro } from '../components';
+import { AboutInfo, Intro } from '../components-site';
 
 export default function Home() {
   return (

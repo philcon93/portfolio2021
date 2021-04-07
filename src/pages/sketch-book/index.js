@@ -1,4 +1,4 @@
-import { Intro, Posts } from '../../components';
+import { Intro, Posts } from '../../components-site';
 import { getAllPosts, sketchesDirectory } from '../../utilities/api';
 import Head from 'next/head';
 import { CMS_NAME } from '../../utilities/constants';

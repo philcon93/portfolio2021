@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
-import { parseText } from '../../utilities/parse-text';
+import { parseText } from '../utilities/parse-text';
 import { WordCloud } from './word-cloud';
 
 export const CarolsWordCloud = ({ dataset, height, width }) => {

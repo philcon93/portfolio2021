@@ -3,7 +3,7 @@ import path from 'path';
 import matter from 'gray-matter';
 import hydrate from 'next-mdx-remote/hydrate';
 import renderToString from 'next-mdx-remote/render-to-string';
-import { PostBody, PostHeader } from '../../components';
+import { PostBody, PostHeader } from '../../components-site';
 import { sketchesFilePaths, sketchesDirectory } from '../../utilities/api';
 import { CMS_NAME } from '../../utilities/constants';
 import dynamic from 'next/dynamic';
@@ -13,53 +13,53 @@ import PropTypes from 'prop-types';
 const components = {
   // a: CustomLink,
   AnimatedPieChart: dynamic(() =>
-    import('../../components/dataviz/animated-pie-chart').then((mod) => mod.AnimatedPieChart)),
+    import('../../components-dataviz/animated-pie-chart').then((mod) => mod.AnimatedPieChart)),
   AUStates: dynamic(() =>
-    import('../../components/dataviz/australia-states').then((mod) => mod.AUStates)),
+    import('../../components-dataviz/australia-states').then((mod) => mod.AUStates)),
   BoxPlot: dynamic(() =>
-    import('../../components/dataviz/box-plot').then((mod) => mod.BoxPlot)),
+    import('../../components-dataviz/box-plot').then((mod) => mod.BoxPlot)),
   CanvasClickMap: dynamic(() =>
-    import('../../components/dataviz/canvas-map-click').then((mod) => mod.CanvasClickMap)),
+    import('../../components-dataviz/canvas-map-click').then((mod) => mod.CanvasClickMap)),
   CanvasMap: dynamic(() =>
-    import('../../components/dataviz/canvas-map').then((mod) => mod.CanvasMap)),
+    import('../../components-dataviz/canvas-map').then((mod) => mod.CanvasMap)),
   CircleAnimation: dynamic(() =>
-    import('../../components/dataviz/circle-animation').then((mod) => mod.CircleAnimation)),
+    import('../../components-dataviz/circle-animation').then((mod) => mod.CircleAnimation)),
   CarolsWordCloud: dynamic(() =>
-    import('../../components/dataviz/carols-word-cloud').then((mod) => mod.CarolsWordCloud)),
+    import('../../components-dataviz/carols-word-cloud').then((mod) => mod.CarolsWordCloud)),
   DensityPlot: dynamic(() =>
-    import('../../components/dataviz/density-plot').then((mod) => mod.DensityPlot)),
+    import('../../components-dataviz/density-plot').then((mod) => mod.DensityPlot)),
   DonutWrapper: dynamic(() =>
-    import('../../components/dataviz/donut').then((mod) => mod.DonutWrapper)),
+    import('../../components-dataviz/donut').then((mod) => mod.DonutWrapper)),
   GeoMap: dynamic(() =>
-    import('../../components/dataviz/geo-map').then((mod) => mod.GeoMap)),
+    import('../../components-dataviz/geo-map').then((mod) => mod.GeoMap)),
   GeoMouseover: dynamic(() =>
-    import('../../components/dataviz/geo-mouseover').then((mod) => mod.GeoMouseover)),
+    import('../../components-dataviz/geo-mouseover').then((mod) => mod.GeoMouseover)),
   PackLayout: dynamic(() => 
-    import('../../components/dataviz/pack-layout').then((mod) => mod.PackLayout)),
+    import('../../components-dataviz/pack-layout').then((mod) => mod.PackLayout)),
   MoneyLineChart: dynamic(() =>
-    import('../../components/dataviz/money-line-chart').then((mod) => mod.MoneyLineChart)),
+    import('../../components-dataviz/money-line-chart').then((mod) => mod.MoneyLineChart)),
   MovieBarChart: dynamic(() =>
-    import('../../components/dataviz/movie-bar-chart').then((mod) => mod.MovieBarChart)),
+    import('../../components-dataviz/movie-bar-chart').then((mod) => mod.MovieBarChart)),
   ResponsiveChart: dynamic(() =>
-    import('../../components/dataviz/responsive-chart').then((mod) => mod.ResponsiveChart)),
+    import('../../components-dataviz/responsive-chart').then((mod) => mod.ResponsiveChart)),
   Ridgelines: dynamic(() =>
-    import('../../components/dataviz/ridgeline').then((mod) => mod.Ridgelines)),
+    import('../../components-dataviz/ridgeline').then((mod) => mod.Ridgelines)),
   RoundDashboard: dynamic(() =>
-    import('../../components/dataviz/round-dashboard').then((mod) => mod.RoundDashboard)),
+    import('../../components-dataviz/round-dashboard').then((mod) => mod.RoundDashboard)),
   Sankey: dynamic(() =>
-    import('../../components/dataviz/sankey').then((mod) => mod.Sankey)),
+    import('../../components-dataviz/sankey').then((mod) => mod.Sankey)),
   StackedChart: dynamic(() =>
-    import('../../components/dataviz/stacked-bar-chart').then((mod) => mod.StackedChart)),
+    import('../../components-dataviz/stacked-bar-chart').then((mod) => mod.StackedChart)),
   TreeLayout: dynamic(() =>
-    import('../../components/dataviz/tree-layout').then((mod) => mod.TreeLayout)),
+    import('../../components-dataviz/tree-layout').then((mod) => mod.TreeLayout)),
   TreeMapLayout: dynamic(() =>
-    import('../../components/dataviz/treemap-layout').then((mod) => mod.TreeMapLayout)),
+    import('../../components-dataviz/treemap-layout').then((mod) => mod.TreeMapLayout)),
   VariableBins: dynamic(() =>
-    import('../../components/dataviz/variable-bins').then((mod) => mod.VariableBins)),
+    import('../../components-dataviz/variable-bins').then((mod) => mod.VariableBins)),
   ViolinPlot: dynamic(() =>
-    import('../../components/dataviz/violin-plot').then((mod) => mod.ViolinPlot)),
+    import('../../components-dataviz/violin-plot').then((mod) => mod.ViolinPlot)),
   XmasTrees: dynamic(() =>
-    import('../../components/dataviz/xmas-trees').then((mod) => mod.XmasTrees))
+    import('../../components-dataviz/xmas-trees').then((mod) => mod.XmasTrees))
 }
 
 export default function Post({ source, frontMatter}) {

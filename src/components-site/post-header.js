@@ -1,4 +1,4 @@
-import { DateFormatter, PostTitle } from '../components';
+import { DateFormatter, PostTitle } from '../components-site';
 import PropTypes from 'prop-types';
 
 export const PostHeader = ({ title, date, excerpt }) => {
