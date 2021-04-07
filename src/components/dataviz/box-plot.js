@@ -50,7 +50,7 @@ const Box = ({ sumstat, yScale, xScale }) => {
     });
 };
 
-const Boxes = ({ data, yScale, xScale, colorScale, hover, unhover }) => {
+const Boxes = ({ data, yScale, xScale, colorScale }) => {
     const jitterWidth = 50;
     const sumstat = d3.group(data, d => d.Species);
 
@@ -105,12 +105,12 @@ export const BoxPlot = ({ dataset, height, width }) => {
         .domain(xDomain)
         .range([ 0, width - xMargin ]);
     const yScale = d3.scaleBand()
-        .range([ height - yMargin, 0 ])
         .domain(["setosa", "versicolor", "virginica"])
+        .range([ height - yMargin, 0 ])
         .padding(.4);
     const colorScale = d3.scaleSequential()
-        .interpolator(d3.interpolateInferno)
-        .domain(xDomain);
+        .domain(xDomain)
+        .interpolator(d3.interpolateInferno);
     const initState = {
         show: false,
         value: 0,
