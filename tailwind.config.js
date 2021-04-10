@@ -5,7 +5,9 @@ module.exports = {
   ],
   darkMode: 'class',
   variants: {
-    extend: {},
+    extend: {
+      margin: ['first', 'last'],
+    }
   },
   plugins: [],
 };

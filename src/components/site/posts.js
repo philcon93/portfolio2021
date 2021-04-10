@@ -13,6 +13,7 @@ export const Posts = ({ directory, posts }) => {
             directory={directory}
             slug={post.slug}
             excerpt={post.excerpt}
+            tags={post.tags}
           />
         ))}
       </div>

@@ -22,7 +22,10 @@ export default function Index({ sketches }) {
             </>
           }/>
         {
-          sketches.length > 0 ? <Posts directory="sketch-book" posts={sketches} /> : null
+          sketches.length > 0 &&
+            <Posts
+              directory="sketch-book"
+              posts={sketches} />
         }
     </>
   )
@@ -30,7 +33,7 @@ export default function Index({ sketches }) {
 
 export async function getStaticProps() {
   const sketches = getAllPosts(
-    [ 'date', 'excerpt', 'title', 'slug' ],
+    [ 'date', 'excerpt', 'title', 'slug', 'tags' ],
     sketchesDirectory
   );
 

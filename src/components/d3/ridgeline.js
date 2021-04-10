@@ -59,8 +59,6 @@ const Ridgeline = ({ data, keys, colorScale, xScale, yScale, yNameScale, y }) =>
         setMeans(allMeans);
     }, [ data ]);
 
-    console.log(density);
-
     return (
         density.length > 0 ? (
             density.map((d, i) => {

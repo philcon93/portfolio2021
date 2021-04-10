@@ -74,7 +74,8 @@ export default function Post({ source, frontMatter}) {
         <PostHeader
           title={frontMatter.title}
           date={frontMatter.date}
-          excerpt={frontMatter.excerpt} />
+          excerpt={frontMatter.excerpt}
+          tags={frontMatter.tags} />
         <PostBody content={content} />
       </article>
     </>

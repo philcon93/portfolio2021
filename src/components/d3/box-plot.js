@@ -79,7 +79,6 @@ const Boxes = ({ data, yScale, xScale, colorScale }) => {
             <g>
             {
                 data.map((d, i) => {
-                    console.log(d);
                     return <circle
                         key={i}
                         cx={xScale(d.Sepal_Length)}

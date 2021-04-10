@@ -1,9 +1,11 @@
 export { AboutInfo } from './about-info';
+export { Badge } from './badge';
 export { DateFormatter } from './date-formatter';
 export { Intro } from './intro';
 export { MenuToggle } from './menu-toggle';
 export { PostBody } from './post-body';
 export { PostHeader } from './post-header';
+export { PostSubtitle } from './post-subtitle';
 export { PostTitle } from './post-title';
 export { PostPreview } from './post-preview';
 export { Posts } from './posts';

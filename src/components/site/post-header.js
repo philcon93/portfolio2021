@@ -1,16 +1,11 @@
-import { DateFormatter, PostTitle } from './';
+import { PostSubtitle, PostTitle } from './';
 import PropTypes from 'prop-types';
 
-export const PostHeader = ({ title, date, excerpt }) => {
+export const PostHeader = ({ title, date, excerpt, tags }) => {
   return (
     <>
       <PostTitle>{title}</PostTitle>
-      {
-        excerpt && <p>{excerpt}</p>
-      }
-      <div className="max-w-2xl mx-auto mb-3 font-bold">
-        <DateFormatter dateString={date} />
-      </div>
+      <PostSubtitle date={date} tags={tags} excerpt={excerpt} />
     </>
   )
 }
@@ -18,5 +13,6 @@ export const PostHeader = ({ title, date, excerpt }) => {
 PostHeader.propTypes = {
   title: PropTypes.string,
   date: PropTypes.string,
-  excerpt: PropTypes.string
+  excerpt: PropTypes.string,
+  tags: PropTypes.array
 };
