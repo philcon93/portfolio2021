@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import * as gtag from '../utilities/gtag';
 import { useEffect, useState } from 'react';
-import { MenuToggle, SidebarNav } from '../components-site';
+import { MenuToggle, SidebarNav } from '../components/site';
 import { localEnvironment } from '../utilities/helpers';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from "../theme/theme-context";

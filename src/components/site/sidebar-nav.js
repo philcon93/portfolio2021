@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { CMS_NAME } from '../utilities/constants';
+import { CMS_NAME } from '../../utilities/constants';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import { ThemeContext } from '../theme/theme-context';
+import { ThemeContext } from '../../theme/theme-context';
 
 const NavItem = ({ href, children }) => (
   <div className="mb-2">
