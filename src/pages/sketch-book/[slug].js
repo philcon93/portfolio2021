@@ -31,6 +31,7 @@ const components = {
   Ridgelines: dynamic(() => import('../../components/d3/ridgeline')),
   RoundDashboard: dynamic(() => import('../../components/d3/round-dashboard')),
   Sankey: dynamic(() => import('../../components/d3/sankey')),
+  SpinningCubes: dynamic(() => import('../../components/three/spinning-cubes')),
   StackedChart: dynamic(() => import('../../components/d3/stacked-bar-chart')),
   TreeLayout: dynamic(() => import('../../components/d3/tree-layout')),
   TreeMapLayout: dynamic(() => import('../../components/d3/treemap-layout')),
