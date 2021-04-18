@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
 
-export const GeoMap = ({ dataset, height, width }) => {
+const GeoMap = ({ dataset, height, width }) => {
     const [ data, setData ] = useState(null);
     const projection = d3
         .geoEquirectangular()
@@ -36,6 +36,8 @@ export const GeoMap = ({ dataset, height, width }) => {
         ) : null
     )
 }
+
+export default GeoMap;
 
 GeoMap.propTypes = {
     dataset: PropTypes.string,

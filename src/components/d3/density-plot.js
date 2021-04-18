@@ -81,7 +81,7 @@ const Density = ({ data, yScale, xScale, width }) => {
     );
 };
 
-export const DensityPlot = ({ dataset, height, width }) => {
+const DensityPlot = ({ dataset, height, width }) => {
     const yMargin = 40;
     const [ data, setData ] = useState(null);
     const yScale = d3.scaleLinear()
@@ -114,6 +114,8 @@ export const DensityPlot = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default DensityPlot;
 
 LeftAxis.propTypes = {
     scale: PropTypes.func,

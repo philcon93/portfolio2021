@@ -36,7 +36,7 @@ const Arc = ({ d, r, width }) => {
     );
 };
 
-export const RoundDashboard = ({dataset, width, height}) => {
+const RoundDashboard = ({dataset, width, height}) => {
     const [ data, setData ] = useState(null);
 
     useEffect(() => {
@@ -55,6 +55,8 @@ export const RoundDashboard = ({dataset, width, height}) => {
         </svg>
     );
 };
+
+export default RoundDashboard;
 
 Arc.propTypes = {
     d: PropTypes.object,

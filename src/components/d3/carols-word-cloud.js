@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { parseText } from '../../utilities/parse-text';
 import { WordCloud } from './word-cloud';
 
-export const CarolsWordCloud = ({ dataset, height, width }) => {
+const CarolsWordCloud = ({ dataset, height, width }) => {
   const catchAllGroup = "All carols";
   const [ data, setData ] = useState(null);
   const [chosenCarol, setChosenCarol] = useState(catchAllGroup);
@@ -45,6 +45,8 @@ export const CarolsWordCloud = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default CarolsWordCloud;
 
 CarolsWordCloud.propTypes = {
   dataset: PropTypes.string,

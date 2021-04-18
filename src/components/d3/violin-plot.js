@@ -69,7 +69,7 @@ const Violins = ({ data, yScale, xScale, y }) => {
     });
 };
 
-export const ViolinPlot = ({ dataset, height, width }) => {
+const ViolinPlot = ({ dataset, height, width }) => {
     const yMargin = 40;
     const [ data, setData ] = useState(null);
     const yScale = d3.scaleLinear()
@@ -99,6 +99,8 @@ export const ViolinPlot = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default ViolinPlot;
 
 LeftAxis.propTypes = {
     scale: PropTypes.func,

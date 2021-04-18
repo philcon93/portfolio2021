@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
 
-export const TreeLayout = ({ dataset, height, width }) => {
+const TreeLayout = ({ dataset, height, width }) => {
     const [ data, setData ] = useState(null);
     const tree = data => {
         const root = d3.hierarchy(data);
@@ -54,6 +54,8 @@ export const TreeLayout = ({ dataset, height, width }) => {
         ) : null
     )
 }
+
+export default TreeLayout;
 
 TreeLayout.propTypes = {
     dataset: PropTypes.string,

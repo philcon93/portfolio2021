@@ -103,7 +103,7 @@ const SnakeyWrapper = ({ data, width, height }) => {
     );
 };
 
-export const Sankey = ({ dataset, height, width }) => {
+const Sankey = ({ dataset, height, width }) => {
     const [ data, setData ] = useState(null);
     const [ chartWidth, setWidth ] = useState(0);
     const [ chartHeight, setHeight ] = useState(0);
@@ -138,6 +138,8 @@ export const Sankey = ({ dataset, height, width }) => {
         </svg>
     )
 }
+
+export default Sankey;
 
 SankeyNode.propTypes = {
     name: PropTypes.string,

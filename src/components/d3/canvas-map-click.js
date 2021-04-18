@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
 
-export const CanvasClickMap = ({ dataset, height, width }) => {
+const CanvasClickMap = ({ dataset, height, width }) => {
     const [ data, setData ] = useState(null);
     const [ rotation, setRotation ] = useState(25);
     const [ location, setLocation ] = useState(null);
@@ -65,6 +65,8 @@ export const CanvasClickMap = ({ dataset, height, width }) => {
 
     return <canvas width={width} height={height} ref={ref} onClick={onClick}/>;
 }
+
+export default CanvasClickMap;
 
 CanvasClickMap.propTypes = {
     dataset: PropTypes.string,

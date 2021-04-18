@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { Barchart } from "./tree-barchart";
 import PropTypes from 'prop-types';
 
-export const XmasTrees = ({ dataset, height, width }) => {
+const XmasTrees = ({ dataset, height, width }) => {
   const [ data, setData ] = useState(null);
   const [ value, setValue ] = useState("fake_trees");
 
@@ -38,6 +38,8 @@ export const XmasTrees = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default XmasTrees;
 
 XmasTrees.propTypes = {
   dataset: PropTypes.string,
