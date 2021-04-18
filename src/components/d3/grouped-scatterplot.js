@@ -51,7 +51,7 @@ const Scatterplot = ({ data, yScale, xScale, colorScale, hover, unhover }) => {
     );
 };
 
-export const GroupedScatterplot = ({ dataset, height, width }) => {
+const GroupedScatterplot = ({ dataset, height, width }) => {
     const yMargin = 40;
     const xMargin = 50;
     const [ data, setData ] = useState(null);
@@ -124,6 +124,8 @@ export const GroupedScatterplot = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default GroupedScatterplot;
 
 LeftAxis.propTypes = {
     scale: PropTypes.func,

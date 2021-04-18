@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import PropTypes from 'prop-types';
 import { LineChart } from './line-chart';
 
-export const MoneyLineChart = ({ dataset, height, width }) => {
+const MoneyLineChart = ({ dataset, height, width }) => {
   const [ data, setData ] = useState(null);
 
   useEffect(() => {
@@ -26,6 +26,8 @@ export const MoneyLineChart = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default MoneyLineChart;
 
 MoneyLineChart.propTypes = {
     dataset: PropTypes.string,

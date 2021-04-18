@@ -49,7 +49,7 @@ const VerticalBarchart = ({ data, width, height, value }) => {
     );
   };
 
-export const MovieBarChart = ({dataset, width, height}) => {
+const MovieBarChart = ({dataset, width, height}) => {
     const [ data, setData ] = useState(null);
     const [perYear, setPerYear] = useState(false);
     const valueFunction = perYear ? d => d.per_year : d => d.box_office;
@@ -88,6 +88,7 @@ export const MovieBarChart = ({dataset, width, height}) => {
     );
 };
 
+export default MovieBarChart;
 
 VerticalBarchart.propTypes = {
     data: PropTypes.array,

@@ -35,7 +35,7 @@ const Histogram = ({ data, yScale, xScale, height }) => {
     )
 };
 
-export const VariableBins = ({ dataset, height, width }) => {
+const VariableBins = ({ dataset, height, width }) => {
     const [ range, setRange ] = useState(30);
     const yMargin = 40;
     const [ data, setData ] = useState(null);
@@ -87,6 +87,8 @@ export const VariableBins = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default VariableBins;
 
 LeftAxis.propTypes = {
     scale: PropTypes.func,

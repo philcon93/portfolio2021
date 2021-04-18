@@ -95,7 +95,7 @@ const Boxes = ({ data, yScale, xScale, colorScale }) => {
     );
 };
 
-export const BoxPlot = ({ dataset, height, width }) => {
+const BoxPlot = ({ dataset, height, width }) => {
     const yMargin = 40;
     const xMargin = 50;
     const xDomain = [ 3.5, 8 ];
@@ -167,6 +167,8 @@ export const BoxPlot = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default BoxPlot;
 
 LeftAxis.propTypes = {
     scale: PropTypes.func,

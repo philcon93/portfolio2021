@@ -146,7 +146,7 @@ const PieChart = ({ groupBy, data, x, y }) => {
     );
 };
 
-export const AnimatedPieChart = ({ dataset, title, height, width }) => {
+const AnimatedPieChart = ({ dataset, title, height, width }) => {
   const [ data, setData ] = useState([]);
   const [ trickle, setTrickle ] = useState(false);
   const [ cachedData, setCachedData ] = useState([]);
@@ -208,6 +208,8 @@ export const AnimatedPieChart = ({ dataset, title, height, width }) => {
     </>
   )
 }
+
+export default AnimatedPieChart;
 
 Arc.propTypes = {
     color: PropTypes.object,

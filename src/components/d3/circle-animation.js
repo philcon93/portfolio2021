@@ -43,7 +43,7 @@ const CircleDots = ({ explode, r = 12, x, y }) => {
     );
 };
 
-export const CircleAnimation = ({ width, height}) => {
+const CircleAnimation = ({ width, height}) => {
   const [explode, setExplode] = useState(false);
 
   return (
@@ -73,6 +73,8 @@ export const CircleAnimation = ({ width, height}) => {
       </svg>
   );
 };
+
+export default CircleAnimation;
 
 CircleDots.propTypes = {
   explode: PropTypes.bool,

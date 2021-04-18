@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
 
-export const GeoMouseover = ({ dataset, height, width }) => {
+const GeoMouseover = ({ dataset, height, width }) => {
     const [ info, setInfo ] = useState('Hover over a country');
     const [ boundingBox, setBoundingBox ] = useState({
         'x': null,
@@ -81,6 +81,8 @@ export const GeoMouseover = ({ dataset, height, width }) => {
         ) : null
     )
 }
+
+export default GeoMouseover;
 
 GeoMouseover.propTypes = {
     dataset: PropTypes.string,

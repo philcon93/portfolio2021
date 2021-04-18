@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
 
-export const AUStates = ({dataset, width, height}) => {
+const AUStates = ({dataset, width, height}) => {
     const [ data, setData ] = useState(null);
     const projection = d3
         .geoMercator()
@@ -62,6 +62,8 @@ export const AUStates = ({dataset, width, height}) => {
         </svg>
     );
 };
+
+export default AUStates;
 
 AUStates.propTypes = {
     dataset: PropTypes.string,

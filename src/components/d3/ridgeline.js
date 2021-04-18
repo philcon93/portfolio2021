@@ -80,7 +80,7 @@ const Ridgeline = ({ data, keys, colorScale, xScale, yScale, yNameScale, y }) =>
     );
 };
 
-export const Ridgelines = ({ dataset, height, width }) => {
+const Ridgelines = ({ dataset, height, width }) => {
     const yMargin = 200;
     const xMargin = 100;
     const keys = ["Almost Certainly", "Very Good Chance", "We Believe", "Likely", "About Even", "Little Chance", "Chances Are Slight", "Almost No Chance" ]
@@ -126,6 +126,8 @@ export const Ridgelines = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default Ridgelines;
 
 LeftAxis.propTypes = {
     scale: PropTypes.func,

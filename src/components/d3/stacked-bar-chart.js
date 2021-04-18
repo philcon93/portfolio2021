@@ -90,7 +90,7 @@ const StackChart = ({ data, width, height }) => {
     );
   };
 
-export const StackedChart = ({dataset, width, height}) => {
+const StackedChart = ({dataset, width, height}) => {
     const [ data, setData ] = useState(null);
 
     useEffect(() => {
@@ -113,6 +113,8 @@ export const StackedChart = ({dataset, width, height}) => {
       </svg>
     );
 };
+
+export default StackedChart;
 
 VerticalAxis.propTypes = {
   scale: PropTypes.func,

@@ -48,7 +48,7 @@ const Donut = ({ data, x, y, r }) => {
     );
 };
 
-export const DonutWrapper = ({ dataset, height, width }) => {
+const DonutWrapper = ({ dataset, height, width }) => {
   const [ data, setData ] = useState(null);
 
   useEffect(() => {
@@ -66,6 +66,8 @@ export const DonutWrapper = ({ dataset, height, width }) => {
     ) : null
   )
 }
+
+export default DonutWrapper;
 
 Legend.propTypes = {
   colorScale: PropTypes.func,

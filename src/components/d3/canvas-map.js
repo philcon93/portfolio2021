@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
 
-export const CanvasMap = ({ dataset, height, width }) => {
+const CanvasMap = ({ dataset, height, width }) => {
     const [ data, setData ] = useState(null);
     const [ geoPoint, setGeoPoint ] = useState(0);
     const ref = useRef(null);
@@ -96,6 +96,8 @@ export const CanvasMap = ({ dataset, height, width }) => {
 
     return <canvas width={width} height={height} ref={ref} />;
 }
+
+export default CanvasMap;
 
 CanvasMap.propTypes = {
     dataset: PropTypes.string,

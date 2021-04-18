@@ -95,7 +95,7 @@ const ResponsiveStackChart = ({ data, keys, width, height }) => {
   );
 };
 
-export const ResponsiveChart = ({ dataset, height, width }) => {
+const ResponsiveChart = ({ dataset, height, width }) => {
     const [ data, setData ] = useState(null);
     const [ chartWidth, setWidth ] = useState(0);
     const [ chartHeight, setHeight ] = useState(0);
@@ -140,6 +140,8 @@ export const ResponsiveChart = ({ dataset, height, width }) => {
         </svg>
     )
 }
+
+export default ResponsiveChart;
 
 Legend.propTypes = {
   colorScale: PropTypes.func,
