@@ -24,6 +24,7 @@ const components = {
   GeoMap: dynamic(() => import('../../components/d3/geo-map')),
   GeoMouseover: dynamic(() => import('../../components/d3/geo-mouseover')),
   GroupedScatterplot: dynamic(() => import('../../components/d3/grouped-scatterplot')),
+  HeatMap: dynamic(() => import('../../components/d3/heatmap')),
   PackLayout: dynamic(() =>  import('../../components/d3/pack-layout')),
   MoneyLineChart: dynamic(() => import('../../components/d3/money-line-chart')),
   MovieBarChart: dynamic(() => import('../../components/d3/movie-bar-chart')),
