@@ -14,6 +14,7 @@ const components = {
   // a: CustomLink,
   AnimatedPieChart: dynamic(() => import('../../components/d3/animated-pie-chart')),
   AUStates: dynamic(() => import('../../components/d3/australia-states')),
+  BubbleChart: dynamic(() => import('../../components/d3/bubble-chart')),
   BoxPlot: dynamic(() => import('../../components/d3/box-plot')),
   CanvasClickMap: dynamic(() => import('../../components/d3/canvas-map-click')),
   CanvasMap: dynamic(() => import('../../components/d3/canvas-map')),

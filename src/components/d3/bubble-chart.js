@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as d3 from "d3";
 import PropTypes from 'prop-types';
 import { useD3 } from "d3blackbox";
+import d3legend from "d3-svg-legend";
 
 const LeftAxis = ({ scale, x, y }) => {
     const refAnchor = useD3(anchor => {
@@ -23,42 +24,60 @@ const BottomAxis = ({ scale, x, y }) => {
     return <g ref={refAnchor} transform={`translate(${x}, ${y})`} />;
 };
 
-const Squares = ({ data, yScale, xScale, colorScale, hover, unhover }) => {
-    const mouseOver = (event, data) => hover(event, data);
-    const mouseLeave = () => unhover();
+const Legend = function({ x, y, colorScale }) {
+    const ref = useD3(anchor => {
+      d3.select(anchor).call(d3legend.legendColor().scale(colorScale).shape('circle'));
+    });
+  
+    return <g transform={`translate(${x}, ${y})`} ref={ref} />;
+};
+
+const Bubbles = ({ data, yScale, xScale, sizeScale, colorScale, hover, unhover }) => {
+    const [ active, setActive ] = useState(false) 
+    const mouseOver = (event, data) => {
+        hover(event, data);
+        setActive(data.country);
+    }
+    const mouseLeave = () => {
+        unhover();
+        setActive(false);
+    }
 
     return (
         data.map((d, i) => {
-            return <rect
+            return <circle
                 key={i}
-                x={xScale(d.group)}
-                y={yScale(d.variable)}
-                width={xScale.bandwidth()}
-                height={yScale.bandwidth()}
-                style={{ fill: colorScale(d.value) }}
+                cx={xScale(d.gdpPercap)}
+                cy={yScale(d.lifeExp)}
+                r={sizeScale(d.pop)}
+                style={{
+                    fill: colorScale(d.continent),
+                    strokeWidth: '2px',
+                    stroke: active === d.country ? '#000' : '#fff'
+                }}
                 onMouseOver={(e) => mouseOver(e, d)} 
                 onMouseLeave={mouseLeave} />
         })
     );
 };
 
-const HeatMap = ({ dataset, height, width }) => {
+const BubbleChart = ({ dataset, height, width }) => {
     const yMargin = 40;
     const xMargin = 50;
     const [ data, setData ] = useState(null);
-    const myGroups = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
-    const myVars = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10"];
-    const xScale = d3.scaleBand()
-        .domain(myGroups)
-        .range([ 0, width - xMargin ])
-        .padding(0.01);
-    const yScale = d3.scaleBand()
-        .domain(myVars)
-        .range([ height - yMargin, 0 ])
-        .padding(0.01);
-    const colorScale = d3.scaleLinear()
-        .range(["#ffffff", "#69b3a2"])
-        .domain([1,100]);
+    const continent = ["Asia", "Europe", "Americas", "Africa", "Oceania"];
+    const xScale = d3.scaleLinear()
+        .domain([0, 12000])
+        .range([ 0, width - xMargin ]);
+    const yScale = d3.scaleLinear()
+        .domain([35, 90])
+        .range([ height - yMargin, 0 ]);
+    const sizeScale = d3.scaleLinear()
+        .domain([200000, 1310000000])
+        .range([ 4, 40]);
+    const colorScale = d3.scaleOrdinal()
+        .domain(continent)
+        .range(d3.schemeSet2);
 
     const initState = {
         show: false,
@@ -88,13 +107,15 @@ const HeatMap = ({ dataset, height, width }) => {
         <>
         <svg width={width} height={height}>
             <g transform={`translate(40, 10)`}>
-                <Squares
+                <Bubbles
                     data={data}
                     yScale={yScale}
                     xScale={xScale}
+                    sizeScale={sizeScale}
                     colorScale={colorScale}
                     hover={hover}
                     unhover={() => setTooltip(initState)}/>
+                <Legend x={width - 140} y={height - 150} colorScale={colorScale} />
                 <LeftAxis scale={yScale} x={0} y={0} />
                 <BottomAxis scale={xScale} x={0} y={height - yMargin} />
             </g>
@@ -111,14 +132,14 @@ const HeatMap = ({ dataset, height, width }) => {
                 top: tooltip.topPos,
                 left: tooltip.leftPos
                 }}>
-                This cell is: {tooltip.item.value}<br/>
+                Country: {tooltip.item.country}
             </div> }
         </>
     ) : null
   )
 }
 
-export default HeatMap;
+export default BubbleChart;
 
 LeftAxis.propTypes = {
     scale: PropTypes.func,
@@ -132,16 +153,23 @@ BottomAxis.propTypes = {
     y: PropTypes.number
 };
 
-Squares.propTypes = {
+Legend.propTypes = {
+    colorScale: PropTypes.func,
+    x: PropTypes.number,
+    y: PropTypes.number
+};
+
+Bubbles.propTypes = {
     data: PropTypes.array,
     yScale: PropTypes.func,
     xScale: PropTypes.func,
+    sizeScale: PropTypes.func,
     colorScale: PropTypes.func,
     hover: PropTypes.func,
     unhover: PropTypes.func
 };
 
-HeatMap.propTypes = {
+BubbleChart.propTypes = {
   dataset: PropTypes.string,
   height: PropTypes.number,
   width: PropTypes.number
