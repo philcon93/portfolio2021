@@ -20,6 +20,7 @@ const components = {
   CanvasMap: dynamic(() => import('../../components/d3/canvas-map')),
   CircleAnimation: dynamic(() => import('../../components/d3/circle-animation')),
   CarolsWordCloud: dynamic(() => import('../../components/d3/carols-word-cloud')),
+  ConnectedScatterplot: dynamic(() => import('../../components/d3/connected-scatterplot')),
   DensityPlot: dynamic(() => import('../../components/d3/density-plot')),
   DonutWrapper: dynamic(() => import('../../components/d3/donut')),
   GeoMap: dynamic(() => import('../../components/d3/geo-map')),

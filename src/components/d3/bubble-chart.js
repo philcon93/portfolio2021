@@ -3,6 +3,7 @@ import * as d3 from "d3";
 import PropTypes from 'prop-types';
 import { useD3 } from "d3blackbox";
 import d3legend from "d3-svg-legend";
+import { Tooltip } from "./tooltip";
 
 const LeftAxis = ({ scale, x, y }) => {
     const refAnchor = useD3(anchor => {
@@ -120,20 +121,12 @@ const BubbleChart = ({ dataset, height, width }) => {
                 <BottomAxis scale={xScale} x={0} y={height - yMargin} />
             </g>
         </svg>
-        { tooltip.show &&
-            <div style={{
-                backgroundColor: '#000',
-                border: 'none',
-                borderRadius: '5px',
-                padding: '15px',
-                minWidth: '200px',
-                color: '#fff',
-                position: 'absolute',
-                top: tooltip.topPos,
-                left: tooltip.leftPos
-                }}>
+        {
+            tooltip.show &&
+            <Tooltip show={tooltip.show} topPos={tooltip.topPos} leftPos={tooltip.leftPos}>
                 Country: {tooltip.item.country}
-            </div> }
+            </Tooltip>
+        }
         </>
     ) : null
   )
