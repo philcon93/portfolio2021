@@ -1,7 +1,7 @@
 import React, { Suspense, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { Stage, OrbitControls } from '@react-three/drei'
-import Model from './model'
+import Model from './avatar'
 
 export default function Scene() {
   const ref = useRef();

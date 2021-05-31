@@ -10,7 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Intro title="About." />
-      <div className="w-100">
+      <div className="w-full">
         <h2 className="text-4xl">Experience</h2>
         <AboutInfo
             title="UX Engineer"
