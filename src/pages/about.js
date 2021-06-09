@@ -14,13 +14,19 @@ export default function Home() {
         <h2 className="text-4xl">Experience</h2>
         <AboutInfo
             title="UX Engineer"
+            subtitle="Maropost"
+            timeframe="Jan 2021 - Present" />
+        <AboutInfo
+            title="UX Engineer"
             subtitle="Neto E-Commerce Solutions"
             timeframe="Jul 2018 - Present">
             <div>
                 <p className="mb-2">I work within a cross-functional product development team to bring together the design (user interface, accessibility and user experience) and engineering (front-end development) functions of the business. Ultimately I am to utilise my design and development toolkit to solve problems for our customers and help the teams I belong to achieve their goals, especially pertaining to user experience and interface.</p>
+                <p className="mb-2">Some of the major projects I worked on throughout my time as a UX Engineer has been; Redevelop and redesign our Managed Checkout, Implement multiple payment methods into the managed checkout, including Stripe, eWay, and Web payments such as ApplePay and GooglePay. Helped modernize the Sales Order experience, and round out the Inventory management offering by designing and developing Stock Transfers into the product.</p>
                 <span>Some of my responsibilities as a UX engineer include:</span>
                 <ul className="list-disc pl-5">
                     <li>Wireframe, design, prototype and implement user interfaces using the standardised toolkit of the technology team.</li>
+                    <li>Update and maintain our products style guide.</li>
                     <li>Participate in research to gather insights on best practices. This includes reading books and internet resources, conducting behavioural testing and various other types of customer engagement.</li>
                     <li>Advise peers on decisions impacting user experience.</li>
                     <li>Participate in, and run, design workshops.</li>
