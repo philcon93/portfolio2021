@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { CMS_NAME } from '../../utilities/constants';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { ThemeContext } from '../../theme/theme-context';
@@ -49,12 +48,8 @@ const SocialLink = ({ href, children }) => (
 export const SidebarNav = ({ showMenu }) => (
   <aside className={`w-3/5 md:w-48 lg:w-64 h-screen sticky top-0 border-r border-gray-200 flex flex-col justify-between p-8 md:flex ${showMenu ? 'hidden' : ''}`}>
     <div>
-      <Link href="/">
-        <a href="/" className="text-3xl tracking-tight leading-10 font-extrabold text-gray-600 dark:text-gray-300">
-          {CMS_NAME}
-        </a>
-      </Link>
       <nav className="mt-8">
+        <NavItem href="/">Home</NavItem>
         <NavItem href="/about">About</NavItem>
         <NavItem href="/sketch-book">Sketch book</NavItem>
       </nav>
