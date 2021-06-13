@@ -30,6 +30,7 @@ const components = {
   PackLayout: dynamic(() =>  import('../../components/d3/pack-layout')),
   MoneyLineChart: dynamic(() => import('../../components/d3/money-line-chart')),
   MovieBarChart: dynamic(() => import('../../components/d3/movie-bar-chart')),
+  Replace: dynamic(() => import('../../components/site/replace')),
   ResponsiveChart: dynamic(() => import('../../components/d3/responsive-chart')),
   Ridgelines: dynamic(() => import('../../components/d3/ridgeline')),
   RoundDashboard: dynamic(() => import('../../components/d3/round-dashboard')),
