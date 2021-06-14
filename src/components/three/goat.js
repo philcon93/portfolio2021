@@ -12,7 +12,7 @@ import { useFrame } from '@react-three/fiber'
 
 export default function Model(props) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/models/goat/scene.gltf')
+  const { nodes, materials } = useGLTF('/models/goat/output.glb')
 
   useFrame(() => {
     group.current.rotation.y += 0.01
@@ -22,20 +22,56 @@ export default function Model(props) {
     <group ref={group} {...props} dispose={null} scale={0.25}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group position={[1.46, 0, 0.54]} rotation={[Math.PI / 2, 0, 0]} scale={[0.51, 1.43, 1.43]}>
-          <group position={[-9.97, 1.45, 0.35]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.18, 0.06, 0.06]}>
-            <mesh geometry={nodes.Icosphere_0.geometry} material={nodes.Icosphere_0.material} />
+          <group
+            position={[-9.97, 1.45, 0.35]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={[0.18, 0.06, 0.06]}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Icosphere_0.geometry}
+              material={nodes.Icosphere_0.material}
+            />
           </group>
-          <group position={[-9.97, 1.45, -0.35]} rotation={[-Math.PI / 2, 0, 0]} scale={[0.18, 0.06, 0.06]}>
-            <mesh geometry={nodes.Icosphere001_0.geometry} material={materials['Material.002']} />
+          <group
+            position={[-9.97, 1.45, -0.35]}
+            rotation={[-Math.PI / 2, 0, 0]}
+            scale={[0.18, 0.06, 0.06]}>
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.Icosphere001_0.geometry}
+              material={materials['Material.002']}
+            />
           </group>
-          <mesh geometry={nodes.Plane_0.geometry} material={materials.Goat} />
-          <mesh geometry={nodes.Plane_1.geometry} material={materials.Goat_Horn} />
-          <mesh geometry={nodes.Plane_2.geometry} material={materials.Goat_Claws} />
-          <mesh geometry={nodes.Plane_3.geometry} material={nodes.Plane_3.material} />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane_0.geometry}
+            material={materials.Goat}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane_1.geometry}
+            material={materials.Goat_Horn}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane_3.geometry}
+            material={nodes.Plane_3.material}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Plane_2.geometry}
+            material={materials.Goat_Claws}
+          />
         </group>
       </group>
     </group>
   )
 }
 
-useGLTF.preload('/scene.gltf')
+useGLTF.preload('/models/goat/output.glb')

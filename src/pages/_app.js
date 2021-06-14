@@ -8,12 +8,15 @@ import { ThemeProvider } from "../theme/theme-context";
 import { useRouter } from 'next/router';
 
 const MyApp = ({ Component, pageProps }) => {
-  const [toggleMenu, setToggleMenu] = useState(true);
+  const [toggleMenu, setToggleMenu] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
     const handleRouteChange = (url) => {
+      // Only send analytics if not in local development
       !localEnvironment() && gtag.pageview(url);
+      // Hide mobile menu when changing routes
+      setToggleMenu(false);
     }
     router.events.on('routeChangeComplete', handleRouteChange)
     return () => {
@@ -24,7 +27,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <ThemeProvider>
       <div className="flex">
-        <SidebarNav showMenu={toggleMenu} />
+        <SidebarNav showMenu={toggleMenu} toggle={() => setToggleMenu(!toggleMenu)} />
         <div className="w-full">
           <MenuToggle toggle={() => setToggleMenu(!toggleMenu)} />
           <div className="p-4 md:p-8 lg:max-w-2xl lg:mx-auto text-gray-600 dark:text-gray-300">
