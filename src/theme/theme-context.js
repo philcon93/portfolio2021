@@ -12,13 +12,6 @@ export const ThemeProvider = ({ children }) => {
     const darkTheme = 'dark';
     const lightTheme = 'light';
 
-    useEffect(() => {
-        const theme = localStorage.getItem("theme");
-        if (theme !== null) {
-            setTheme(JSON.parse(theme));
-        }
-    }, []);
-
     const toggleTheme = () => {
         const d = document.documentElement;
         const themes = [lightTheme, darkTheme];
@@ -26,13 +19,10 @@ export const ThemeProvider = ({ children }) => {
         if (theme == darkTheme) {
             d.classList.remove(...themes);
             d.classList.add(lightTheme);
-            localStorage.setItem("theme", JSON.stringify(lightTheme));
             setTheme(lightTheme);
         } else {
             d.classList.remove(...themes);
             d.classList.add(darkTheme);
-            // d.setAttribute("class", "dark");
-            localStorage.setItem("theme", JSON.stringify(darkTheme));
             setTheme(darkTheme);
         }
     };

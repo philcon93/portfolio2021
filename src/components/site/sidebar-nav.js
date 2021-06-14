@@ -2,6 +2,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { ThemeContext } from '../../theme/theme-context';
+import { MenuToggle } from './menu-toggle';
 
 const NavItem = ({ href, children }) => (
   <div className="mb-2">
@@ -45,9 +46,10 @@ const SocialLink = ({ href, children }) => (
   </div>
 );
 
-export const SidebarNav = ({ showMenu }) => (
-  <aside className={`w-3/5 md:w-48 lg:w-64 h-screen sticky top-0 border-r border-gray-200 flex flex-col justify-between p-8 md:flex ${showMenu ? 'hidden' : ''}`}>
+export const SidebarNav = ({ showMenu, toggle }) => (
+  <aside className={`w-3/5 md:w-48 lg:w-64 h-screen fixed md:sticky top-0 border-r border-gray-200 bg-gray-100 dark:bg-gray-800 z-50 flex flex-col justify-between p-8 md:flex ${showMenu ? '' : 'hidden'}`}>
     <div>
+      <MenuToggle toggle={toggle} className={'px-0'}/>
       <nav className="mt-8">
         <NavItem href="/">Home</NavItem>
         <NavItem href="/about">About</NavItem>
@@ -75,5 +77,6 @@ SocialLink.propTypes = {
 };
 
 SidebarNav.propTypes = {
-  showMenu: PropTypes.bool
+  showMenu: PropTypes.bool,
+  toggle: PropTypes.func
 };
