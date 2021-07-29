@@ -19,7 +19,7 @@ export default function Home() {
         <AboutInfo
             title="UX Engineer"
             subtitle="Neto E-Commerce Solutions"
-            timeframe="Jul 2018 - Present">
+            timeframe="Jul 2018 - Jul 2021">
             <div>
                 <p className="mb-2">I work within a cross-functional product development team to bring together the design (user interface, accessibility and user experience) and engineering (front-end development) functions of the business. Ultimately I am to utilise my design and development toolkit to solve problems for our customers and help the teams I belong to achieve their goals, especially pertaining to user experience and interface.</p>
                 <p className="mb-2">Some of the major projects I worked on throughout my time as a UX Engineer has been; Redevelop and redesign our Managed Checkout, Implement multiple payment methods into the managed checkout, including Stripe, eWay, and Web payments such as ApplePay and GooglePay. Helped modernize the Sales Order experience, and round out the Inventory management offering by designing and developing Stock Transfers into the product.</p>
