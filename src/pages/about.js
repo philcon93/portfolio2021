@@ -13,9 +13,13 @@ export default function Home() {
       <div className="w-full">
         <h2 className="text-4xl">Experience</h2>
         <AboutInfo
+            title="Senior UX Engineer"
+            subtitle="Outfit"
+            timeframe="Aug 2021 - Present" />
+        <AboutInfo
             title="UX Engineer"
             subtitle="Maropost"
-            timeframe="Jan 2021 - Present" />
+            timeframe="Jan 2021 - Aug 2021" />
         <AboutInfo
             title="UX Engineer"
             subtitle="Neto E-Commerce Solutions"
