@@ -58,7 +58,7 @@ export const SidebarNav = ({ showMenu, toggle }) => (
     </div>
     <nav>
       <ThemeToggle />
-      <SocialLink href="https://www.instagram.com/phillycheese93">Instagram</SocialLink>
+      <SocialLink href="https://www.instagram.com/phil.connah">Instagram</SocialLink>
       <SocialLink href="https://github.com/philcon93">Github</SocialLink>
       <SocialLink href="https://www.linkedin.com/in/philconnah/">Linkedin</SocialLink>
     </nav>

@@ -13,7 +13,7 @@ export default function Home() {
       <Intro title="Goat Thoughts." />
       <div className="w-full">
         <p className="lead mb-5">
-          Hey there, my name is Phil! I have been working as a software engineer for over 7 years, with a high end focus of eCommerce, user experience and accessibility.
+          Hey there, my name is Phil! I have been working as a software engineer for over 7 years, with a high-end focus on eCommerce, user experience, and scaling products.
         </p>
         <p>
           I love developing web applications, visualizations, and understanding user behaviour!

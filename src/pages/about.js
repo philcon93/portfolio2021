@@ -15,7 +15,24 @@ export default function Home() {
         <AboutInfo
             title="Senior UX Engineer"
             subtitle="Outfit"
-            timeframe="Aug 2021 - Present" />
+            timeframe="Aug 2021 - Present" >
+            <div>
+                <p>Some of the responsibilities of my role include:</p>
+                <ul className="list-disc pl-5">
+                    <li>Create and manage front-end components, using the internal design system (Outkit).</li>
+                    <li>Contribute to front-end systems and front-end standards.</li>
+                    <li>Plan and manage UX and front-end work in the context of a cross-functional team.</li>
+                    <li>Translate design patterns into highly refined and usable components.</li>
+                    <li>Collaborating with design, product, and tech stakeholders to form and plan out scopes of work for various projects and applications.</li>
+                    <li>Produce and champion cleaner, more scalable, and more stable code.</li>
+                    <li>Increase the front-end testing coverage.</li>
+                    <li>Plan and run workshops to upskill the entire Engineering Team (introduce new concepts and paradigms to the team to increase development cadence and code quality).</li>
+                    <li>Be a strong presence in PR code reviews, especially with respect to React and Javascript contributions.</li>
+                </ul>
+                <p className="my-2">2021 - Make It Happen Award of the Year</p>
+                <p>2021 - Be Bold Award of the Year</p>
+            </div>
+        </AboutInfo>
         <AboutInfo
             title="UX Engineer"
             subtitle="Maropost"
@@ -25,18 +42,16 @@ export default function Home() {
             subtitle="Neto E-Commerce Solutions"
             timeframe="Jul 2018 - Jul 2021">
             <div>
-                <p className="mb-2">I work within a cross-functional product development team to bring together the design (user interface, accessibility and user experience) and engineering (front-end development) functions of the business. Ultimately I am to utilise my design and development toolkit to solve problems for our customers and help the teams I belong to achieve their goals, especially pertaining to user experience and interface.</p>
+                <p className="mb-2">I worked within a cross-functional product development team to bring together the design (user interface, accessibility, and user experience) and engineering (front-end development) functions of the business. Ultimately I am to utilize my design and development toolkit to solve problems for our customers and help the teams I belong to achieve their goals, especially pertaining to user experience and interface.</p>
                 <p className="mb-2">Some of the major projects I worked on throughout my time as a UX Engineer has been; Redevelop and redesign our Managed Checkout, Implement multiple payment methods into the managed checkout, including Stripe, eWay, and Web payments such as ApplePay and GooglePay. Helped modernize the Sales Order experience, and round out the Inventory management offering by designing and developing Stock Transfers into the product.</p>
                 <span>Some of my responsibilities as a UX engineer include:</span>
                 <ul className="list-disc pl-5">
-                    <li>Wireframe, design, prototype and implement user interfaces using the standardised toolkit of the technology team.</li>
+                    <li>Wireframe, design, prototype and implement user interfaces using the standardized toolkit of the technology team.</li>
                     <li>Update and maintain our products style guide.</li>
-                    <li>Participate in research to gather insights on best practices. This includes reading books and internet resources, conducting behavioural testing and various other types of customer engagement.</li>
+                    <li>Participate in research to gather insights on best practices. This includes reading books and internet resources, conducting behavioral testing, and various other types of customer engagement.</li>
                     <li>Advise peers on decisions impacting user experience.</li>
                     <li>Participate in, and run, design workshops.</li>
-                    <li>Participate in the rituals outlined by the working agreements within your cross-functional team and your Community of Practice
-                    i.e., sprint planning, showcase and stand up.</li>
-                    <li>Within your scrum team and community of practice, respect and work towards the priorities which have been agreed upon. Avoid implementing work without consulting the relevant teams.</li>
+                    <li>Participate in the rituals outlined by the working agreements within our cross-functional team and our Community of Practice i.e., sprint planning, showcase, and stand up.</li>
                     <li>Champion good usability and front-end practices. Represent the user, our customer, and act in their best interests.</li>
                 </ul>
             </div>
@@ -46,14 +61,15 @@ export default function Home() {
             subtitle="Neto E-Commerce Solutions"
             timeframe="Jul 2015 – Jul 2018">
             <div>
-                <p>As a Frontend Web Developer my main responsibility was to provide excellence client services. The work ranged from doing small design tweaks to customers ecommerce sites, to full scale design projects. These design projects would start with in-depth client research, scope outlining and ultimately creating a project that best serves the customers business.</p>
+                <p>As a Frontend Web Developer my main responsibility was to provide excellent client services. The work ranged from doing small design tweaks to customers eCommerce sites, to full-scale design projects. These design projects would start with in-depth client research, scope outlining, and ultimately creating a project that best serves the customers business.</p>
                 <p>I would also work heavily on internal design work, which would rapidly change from week to week, so I had to be comfortable with rapidly different work and excel at it.</p>
                 <span>Some of the internal design work entailed:</span>
                 <ul className="list-disc pl-5">
-                    <li>Maintaining the development themes, services forms, sysdocs,</li>
-                    <li>Scoping out potential projects value, required resources, timelines and validity,</li>
-                    <li>Research and introducing new technnology stacks</li>
+                    <li>Maintaining the development themes, services forms, Sysdocs,</li>
+                    <li>Scoping out potential projects value, required resources, timelines, and validity,</li>
+                    <li>Research and introducing new technology stacks</li>
                 </ul>
+                <p className="mt-2">2015 - Most Improved Designer Award of the Year</p>
             </div>
         </AboutInfo>
         <AboutInfo
