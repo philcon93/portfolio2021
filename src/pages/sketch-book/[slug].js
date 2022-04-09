@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import hydrate from 'next-mdx-remote/hydrate';
-import renderToString from 'next-mdx-remote/render-to-string';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote } from 'next-mdx-remote';
 import { PostBody, PostHeader } from '../../components/site';
 import { sketchesFilePaths, sketchesDirectory } from '../../utilities/api';
 import { CMS_NAME } from '../../utilities/constants';
@@ -47,8 +47,6 @@ const components = {
 }
 
 export default function Post({ source, frontMatter}) {
-  const content = hydrate(source, { components });
-
   return (
     <>
       <article className="mb-32">
@@ -60,7 +58,7 @@ export default function Post({ source, frontMatter}) {
           date={frontMatter.date}
           excerpt={frontMatter.excerpt}
           tags={frontMatter.tags} />
-        <PostBody content={content} />
+        <PostBody content={<MDXRemote {...source} components={components} />} />
       </article>
     </>
   )
@@ -69,10 +67,8 @@ export default function Post({ source, frontMatter}) {
 export const getStaticProps = async ({ params }) => {
   const postFilePath = path.join(sketchesDirectory, `${params.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
-
   const { content, data } = matter(source);
-
-  const mdxSource = await renderToString(content, { components });
+  const mdxSource = await serialize(content);
 
   return {
     props: {
