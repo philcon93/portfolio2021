@@ -13,7 +13,7 @@ export default function Home() {
       <Intro title="Goat Thoughts." />
       <div className="w-full">
         <p className="lead mb-5">
-        Hey there, my name is Phil, I am a full-stack JS dev; I work on web UIs (react), servers/APIs (node), apps (react native), and 3D experiences (three.js). I have been working as a software engineer for over 7 years, with a high-end focus on eCommerce, accessibility, user experience, and scaling products.
+        Hey there, my name is Phil, a full-stack JS engineer; UIs (react), servers/APIs (node), apps (react native), and 3D experiences (three.js). I have been working as a software engineer for over 8 years, with a high degree of focus on eCommerce, accessibility, user experience, and scaling products.
         </p>
       </div>
       <GoatScene />
