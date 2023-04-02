@@ -6,10 +6,8 @@ import { MenuToggle } from './menu-toggle';
 
 const NavItem = ({ href, children }) => (
   <div className="mb-2">
-    <Link href={href}>
-        <a className="text-sm text-gray-600 dark:text-gray-300 font-medium hover:underline">
-          {children}
-        </a>
+    <Link href={href} className="text-sm text-gray-600 dark:text-gray-300 font-medium hover:underline">
+      {children}
     </Link>
   </div>
 );
