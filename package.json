@@ -9,8 +9,8 @@
     "lint": "./node_modules/.bin/eslint ./src"
   },
   "dependencies": {
-    "@react-three/drei": "^9.61.3",
-    "@react-three/fiber": "^8.12.0",
+    "@react-three/drei": "^9.77.1",
+    "@react-three/fiber": "^8.13.3",
     "chroma-js": "^2.1.1",
     "classnames": "^2.3.2",
     "d3": "^6.7.0",
