@@ -20,6 +20,7 @@ export const PostSubtitle = (props) => {
 
 PostSubtitle.propTypes = {
   date: PropTypes.string,
+  dateFormat: PropTypes.string,
   excerpt: PropTypes.string,
   tags: PropTypes.array,
 };

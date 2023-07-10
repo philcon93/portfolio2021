@@ -1,28 +1,12 @@
 import "../styles/globals.css";
-import * as gtag from "../utilities/gtag";
-import { useEffect, useState } from "react";
-import { MenuToggle, SidebarNav } from "../components/site";
-import { localEnvironment } from "../utilities/helpers";
+import { Analytics } from "@vercel/analytics/react";
+import { useState } from "react";
 import PropTypes from "prop-types";
+import { MenuToggle, SidebarNav } from "../components/site";
 import { ThemeProvider } from "../theme/theme-context";
-import { useRouter } from "next/router";
 
 const MyApp = ({ Component, pageProps }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      // Only send analytics if not in local development
-      !localEnvironment() && gtag.pageview(url);
-      // Hide mobile menu when changing routes
-      setToggleMenu(false);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
 
   return (
     <ThemeProvider>
@@ -38,6 +22,7 @@ const MyApp = ({ Component, pageProps }) => {
           </div>
         </div>
       </div>
+      <Analytics />
     </ThemeProvider>
   );
 };

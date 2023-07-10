@@ -9,4 +9,5 @@ export const DateFormatter = ({ dateString, dateFormat = "LLLL	d, yyyy" }) => {
 
 DateFormatter.propTypes = {
   dateString: PropTypes.string,
+  dateFormat: PropTypes.string,
 };

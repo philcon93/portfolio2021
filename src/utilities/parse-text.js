@@ -1,6 +1,6 @@
 const takeUntilEmptyLine = (text) => {
   let result = [];
-  
+
   for (
     let row = text.shift();
     row && row.trim().length > 0;
@@ -8,10 +8,10 @@ const takeUntilEmptyLine = (text) => {
   ) {
     result.push(row.trim());
   }
-  
+
   return result;
-}
-  
+};
+
 export const parseText = (text, group) => {
   text = text.split("\n");
 
@@ -26,5 +26,4 @@ export const parseText = (text, group) => {
   }
 
   return carols;
-}
-  
+};
