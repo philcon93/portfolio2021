@@ -21,6 +21,7 @@ const MyApp = ({ Component, pageProps }) => {
             <Component {...pageProps} />
           </div>
         </div>
+        {/* <GoatScene /> */}
       </div>
       <Analytics />
     </ThemeProvider>

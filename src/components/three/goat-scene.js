@@ -13,7 +13,7 @@ export default function Scene() {
     >
       <Suspense fallback={null}>
         <Stage adjustCamera={false} intensity={0.8}>
-          <Model />
+          <Model scale={0.25} />
         </Stage>
       </Suspense>
     </Canvas>
