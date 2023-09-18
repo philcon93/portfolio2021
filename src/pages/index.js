@@ -1,7 +1,8 @@
 import Head from "next/head";
 import { CMS_NAME } from "../utilities/constants";
 import { Intro, PageWrapper } from "../components/site";
-import GoatScene from "../components/three/goat-scene";
+import { GoatExperience } from "../components/three/goat-scene";
+import { InvisibleExperience } from "../components/three/invisible-scene";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <title>{CMS_NAME}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <InvisibleExperience />
       <PageWrapper size={"sm"}>
         <Intro title="Goat Thoughts." />
         <p className="mb-5">
@@ -20,7 +22,7 @@ export default function Home() {
           industries, with a high degree of focus on design systems,
           accessibility, user experience, and scaling products.
         </p>
-        <GoatScene />
+        <GoatExperience />
       </PageWrapper>
     </>
   );

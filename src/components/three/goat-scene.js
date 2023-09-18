@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Stage } from "@react-three/drei";
 import Model from "./goat";
 
-export default function Scene() {
+export function GoatExperience() {
   return (
     <Canvas
       style={{ position: "relative", height: "40vh", width: "100%" }}
