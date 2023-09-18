@@ -16,7 +16,7 @@ const MyApp = ({ Component, pageProps }) => {
     <ThemeProvider>
       <div className="flex">
         <SidebarNav showMenu={toggleMenu} toggleMenu={onToggleMenu} />
-        <div className="w-full">
+        <div className="w-full h-full">
           <MenuToggle className={"p-8 pb-0"} toggleMenu={onToggleMenu} />
           <Component {...pageProps} />
         </div>

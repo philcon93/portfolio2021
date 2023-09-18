@@ -82,14 +82,17 @@ export class RippleRenderer {
   };
 
   _handleMouseMove = (e) => {
-    this._mouse.x = e.clientX - window.innerWidth / 2;
-    this._mouse.y = window.innerHeight / 2 - e.clientY;
+    const x = e.clientX - window.innerWidth / 2;
+    const y = window.innerHeight / 2 - e.clientY;
+
+    this._mouse.x = x;
+    this._mouse.y = y;
   };
 
   _handleTouchMove = (e) => {
-    const { pageX, pageY } = e.touches[0];
-    const x = (pageX / window.innerWidth) * 2 - 1;
-    const y = -1 * ((pageY / window.innerHeight) * 2 - 1);
+    const { clientX, clientY } = e.touches[0];
+    const x = clientX - window.innerWidth / 2;
+    const y = window.innerHeight / 2 - clientY;
 
     this._mouse.x = x;
     this._mouse.y = y;
@@ -156,6 +159,7 @@ export class RippleRenderer {
    */
   dispose = () => {
     window.removeEventListener("mousemove", this._handleMouseMove);
+    window.removeEventListener("touchmove", this._handleTouchMove);
     window.removeEventListener("resize", this._handleResize);
   };
 }

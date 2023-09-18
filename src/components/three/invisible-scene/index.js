@@ -8,7 +8,7 @@ import { RipplePass } from "./RipplePass";
 export function InvisibleExperience() {
   return (
     <Canvas
-      style={{ position: "absolute", height: "100%", width: "100%" }}
+      style={{ position: "absolute", top: 0 }}
       dpr={[1, 2]}
       shadows
       camera={{ fov: 45, position: [0, 1.5, 4.5] }}
