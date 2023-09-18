@@ -41,6 +41,7 @@ export class RippleRenderer {
     this._createMesh();
     // events
     window.addEventListener("mousemove", this._handleMouseMove);
+    window.addEventListener("touchmove", this._handleTouchMove);
     window.addEventListener("resize", this._handleResize);
   }
 
@@ -83,6 +84,15 @@ export class RippleRenderer {
   _handleMouseMove = (e) => {
     this._mouse.x = e.clientX - window.innerWidth / 2;
     this._mouse.y = window.innerHeight / 2 - e.clientY;
+  };
+
+  _handleTouchMove = (e) => {
+    const { pageX, pageY } = e.touches[0];
+    const x = (pageX / window.innerWidth) * 2 - 1;
+    const y = -1 * ((pageY / window.innerHeight) * 2 - 1);
+
+    this._mouse.x = x;
+    this._mouse.y = y;
   };
 
   _handleResize = () => {
