@@ -35,7 +35,7 @@ export class RippleRenderer {
     this._prevMouse = new THREE.Vector2(0, 0);
     /** The index of the ripple drawn at the current frame */
     this._currentWave = 0;
-    //
+    this._texture = _texture;
 
     // mesh
     this._createMesh();

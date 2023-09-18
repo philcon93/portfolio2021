@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React, { useEffect, useMemo, useRef } from "react";
 import { ShaderPass } from "three-stdlib";
 import { useTexture } from "@react-three/drei";
