@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Effects, OrthographicCamera } from "@react-three/drei";
 import { Background } from "./Background";
@@ -7,17 +7,6 @@ import { RipplePass } from "./RipplePass";
 
 export function InvisibleExperience() {
   // const [dpr, setDpr] = useState([1, 2]);
-
-  // Better mobile experience when the page doesn't scroll
-  useEffect(() => {
-    const doc = document.documentElement;
-
-    doc.classList.add("overflow-hidden");
-
-    return () => {
-      doc.classList.remove("overflow-hidden");
-    };
-  }, []);
 
   return (
     <Canvas
