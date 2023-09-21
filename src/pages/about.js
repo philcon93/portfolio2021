@@ -14,11 +14,11 @@ export default function About({ jobs }) {
         <Intro title="About." />
         <h2 className="text-4xl">Experience</h2>
         <div className="py-2">
-          JS | TS | React | Redux | Recoil | MicroFrontends | Nx | Lerna |
-          Prisma | Postgres | Mongo | Express | Apollo Server | NestJS | Node |
-          RESTful | GraphQL | tRPC | React Native | Expo | NextJS | Serverless |
-          Webpack | Rollup | Jest | Cypress | jQuery | D3 | threejs |
-          react-three-fiber | HTML | A11y | PWA | CSS | SASS | LESS | CSS
+          Javascript | Typescript | React | Redux | Recoil | MicroFrontends | Nx
+          | Lerna | Prisma | Postgres | Mongo | Express | Apollo Server | NestJS
+          | Node | RESTful | GraphQL | tRPC | React Native | Expo | NextJS |
+          Serverless | Webpack | Rollup | Jest | Cypress | jQuery | D3 | threejs
+          | react-three-fiber | HTML | A11y | PWA | CSS | SASS | LESS | CSS
           Modules | CSS in JS | Gulp | Buildkite | Git | GitHub actions
         </div>
 

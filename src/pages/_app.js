@@ -17,7 +17,10 @@ const MyApp = ({ Component, pageProps }) => {
       <div className="flex">
         <SidebarNav showMenu={toggleMenu} toggleMenu={onToggleMenu} />
         <div className="w-full h-full">
-          <MenuToggle className={"p-8 pb-0"} toggleMenu={onToggleMenu} />
+          <MenuToggle
+            className={"p-8 pb-0 z-50 relative"}
+            toggleMenu={onToggleMenu}
+          />
           <Component {...pageProps} />
         </div>
       </div>

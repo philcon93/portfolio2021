@@ -26,7 +26,7 @@ export class RippleRenderer {
     //
     this._meshs = [];
     /** Maximum number of ripples drawn */
-    this._max = 100;
+    this._max = 500;
     /** How far the mouse must move in one frame before drawing */
     this._frequency = 5;
     /** mouse coordinates */
@@ -61,15 +61,6 @@ export class RippleRenderer {
       blending: THREE.AdditiveBlending,
       depthTest: false,
       depthWrite: false,
-      //
-      // colorWrite: false,
-      // depthWrite: false,
-      stencilWrite: true,
-      stencilRef: 1,
-      stencilFunc: THREE.AlwaysStencilFunc,
-      stencilFail: THREE.ReplaceStencilOp,
-      stencilZFail: THREE.ReplaceStencilOp,
-      stencilZPass: THREE.ReplaceStencilOp,
     });
     for (let i = 0; i < this._max; i++) {
       const mesh = new THREE.Mesh(geometry.clone(), material.clone());
@@ -135,13 +126,11 @@ export class RippleRenderer {
    */
   update = (gl, uTexture) => {
     this._trackMousePos();
-
     gl.setRenderTarget(this._target);
     gl.render(this._scene, this._camera);
     uTexture.value = this._target.texture;
     gl.setRenderTarget(null);
     gl.clear();
-
     this._meshs.forEach((mesh) => {
       if (mesh.visible) {
         const material = mesh.material;

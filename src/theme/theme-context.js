@@ -1,28 +1,29 @@
 import React, { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
+const darkTheme = "dark";
+const lightTheme = "light";
+
 const defaultState = {
-  dark: false,
-  toggleDark: () => {},
+  theme: darkTheme,
+  toggleTheme: () => {},
 };
 export const ThemeContext = createContext(defaultState);
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(false);
-  const darkTheme = "dark";
-  const lightTheme = "light";
+  const [theme, setTheme] = useState(darkTheme);
 
   const toggleTheme = () => {
-    const d = document.documentElement;
+    const doc = document.documentElement;
     const themes = [lightTheme, darkTheme];
 
     if (theme == darkTheme) {
-      d.classList.remove(...themes);
-      d.classList.add(lightTheme);
+      doc.classList.remove(...themes);
+      doc.classList.add(lightTheme);
       setTheme(lightTheme);
     } else {
-      d.classList.remove(...themes);
-      d.classList.add(darkTheme);
+      doc.classList.remove(...themes);
+      doc.classList.add(darkTheme);
       setTheme(darkTheme);
     }
   };
