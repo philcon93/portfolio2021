@@ -6,7 +6,7 @@ import { MenuToggle } from "./menu-toggle";
 
 export const SidebarNav = ({ showMenu, toggleMenu }) => (
   <aside
-    className={`w-full md:w-48 lg:w-64 min-w-64 h-screen fixed md:sticky top-0 border-r border-gray-200 bg-gray-100 dark:bg-gray-800 z-50 flex flex-col justify-between p-8 md:flex ${
+    className={`w-full md:w-48 lg:w-64 min-w-64 h-[100dvh] top-0 border-r border-transparent md:border-gray-200 bg-gray-100 dark:bg-gray-800 z-50 fixed md:sticky flex md:flex flex-col justify-between p-8 ${
       showMenu ? "" : "hidden"
     }`}
   >
@@ -41,7 +41,7 @@ const NavItem = ({ href, children, toggleMenu }) => (
   <div className="mb-2">
     <Link
       href={href}
-      className="text-sm text-gray-600 dark:text-gray-300 font-medium hover:underline"
+      className="text-lg md:text-sm text-gray-600 dark:text-gray-300 font-medium hover:underline"
       onClick={toggleMenu}
     >
       {children}
@@ -91,7 +91,7 @@ const ThemeToggle = () => {
     <div>
       <a
         onClick={toggleTheme}
-        className="cursor-pointer text-xs text-gray-700 dark:text-gray-400"
+        className="cursor-pointer text-md md:text-xs text-gray-700 dark:text-gray-400"
       >
         {theme === "dark" ? sunIcon() : moonIcon()}
       </a>
@@ -105,7 +105,7 @@ const SocialLink = ({ href, children }) => (
       target="_blank"
       rel="noreferrer"
       href={href}
-      className="text-xs text-gray-700 dark:text-gray-400 hover:underline"
+      className="text-md md:text-xs text-gray-700 dark:text-gray-400 hover:underline"
     >
       {children}
     </a>
