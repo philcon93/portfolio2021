@@ -11,12 +11,10 @@ const useDocumentOverflowHidden = (toggleMenu, pathname) => {
     const doc = document.documentElement;
     const overflowHiddenClass = "overflow-hidden";
 
-    if (toggleMenu && pathname !== "/") {
+    if (pathname === "/" || toggleMenu) {
       doc.classList.add(overflowHiddenClass);
-    } else if (!toggleMenu && pathname !== "/") {
+    } else {
       doc.classList.remove(overflowHiddenClass);
-    } else if (!toggleMenu && pathname === "/") {
-      doc.classList.add(overflowHiddenClass);
     }
   }, [toggleMenu, pathname]);
 };
@@ -33,7 +31,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <ThemeProvider>
       <div className="flex">
-        <SidebarNav showMenu={toggleMenu} toggleMenu={onToggleMenu} />
+        <SidebarNav showMenu={toggleMenu} toggleMenu={setToggleMenu} />
         <div className="w-full h-full">
           <MenuToggle
             className={"p-8 pb-0 z-50 relative"}

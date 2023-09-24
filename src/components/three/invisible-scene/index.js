@@ -7,6 +7,7 @@ import { RipplePass } from "./RipplePass";
 
 export function InvisibleExperience() {
   // const [dpr, setDpr] = useState([1, 2]);
+  const img = true ? "/img/wanderer-cdf.jpeg" : "/img/wlop-1.jpg";
 
   return (
     <Canvas
@@ -24,7 +25,7 @@ export function InvisibleExperience() {
       <pointLight position={[-10, -10, -10]} color="blue" />
       <OrthographicCamera makeDefault position={[0, 0, 5]} />
       <Suspense fallback={null}>
-        <Background />
+        <Background img={img} />
         <Effects disableGamma>
           <RipplePass />
         </Effects>

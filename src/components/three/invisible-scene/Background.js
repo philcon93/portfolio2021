@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { useRef } from "react";
 import { extend, useFrame, useThree } from "@react-three/fiber";
 import { shaderMaterial, useTexture } from "@react-three/drei";
+import PropTypes from "prop-types";
 
 const calcCoveredTextureScale = (texture, aspect, target) => {
   const result = target ?? new THREE.Vector2();
@@ -41,11 +42,11 @@ const BgMaterial = shaderMaterial(
 
 extend({ BgMaterial });
 
-export const Background = () => {
+export const Background = (props) => {
+  const { img } = props;
   const ref = useRef();
   const { size } = useThree();
-
-  const [texture1] = useTexture(["/img/wlop-1.jpg"]);
+  const [texture1] = useTexture([img]);
 
   useFrame(() => {
     const aspect = size.width / size.height;
@@ -60,4 +61,8 @@ export const Background = () => {
       <bgMaterial ref={ref} />
     </mesh>
   );
+};
+
+Background.propTypes = {
+  img: PropTypes.string,
 };

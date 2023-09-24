@@ -17,7 +17,7 @@ export const ThemeProvider = ({ children }) => {
     const doc = document.documentElement;
     const themes = [lightTheme, darkTheme];
 
-    if (theme == darkTheme) {
+    if (theme === darkTheme) {
       doc.classList.remove(...themes);
       doc.classList.add(lightTheme);
       setTheme(lightTheme);

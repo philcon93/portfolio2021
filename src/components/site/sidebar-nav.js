@@ -11,7 +11,7 @@ export const SidebarNav = ({ showMenu, toggleMenu }) => (
     }`}
   >
     <div>
-      <MenuToggle toggleMenu={toggleMenu} />
+      <MenuToggle toggleMenu={(prevState) => toggleMenu(!prevState)} />
       <nav className="mt-8">
         <NavItem href="/" toggleMenu={toggleMenu}>
           Home
@@ -42,7 +42,7 @@ const NavItem = ({ href, children, toggleMenu }) => (
     <Link
       href={href}
       className="text-lg md:text-sm text-gray-600 dark:text-gray-300 font-medium hover:underline"
-      onClick={toggleMenu}
+      onClick={() => toggleMenu(false)}
     >
       {children}
     </Link>
