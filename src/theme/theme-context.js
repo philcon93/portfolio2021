@@ -5,13 +5,13 @@ const darkTheme = "dark";
 const lightTheme = "light";
 
 const defaultState = {
-  theme: darkTheme,
+  theme: lightTheme,
   toggleTheme: () => {},
 };
 export const ThemeContext = createContext(defaultState);
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState(darkTheme);
+  const [theme, setTheme] = useState(defaultState.theme);
 
   const toggleTheme = () => {
     const doc = document.documentElement;

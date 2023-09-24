@@ -1,13 +1,15 @@
 /* eslint-disable react/no-unknown-property */
-import React, { Suspense } from "react";
+import React, { Suspense, useContext } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Effects, OrthographicCamera } from "@react-three/drei";
 import { Background } from "./Background";
 import { RipplePass } from "./RipplePass";
+import { ThemeContext } from "../../../theme/theme-context";
 
 export function InvisibleExperience() {
   // const [dpr, setDpr] = useState([1, 2]);
-  const img = true ? "/img/wanderer-cdf.jpeg" : "/img/wlop-1.jpg";
+  const { theme } = useContext(ThemeContext);
+  const img = theme === "light" ? "/img/wanderer-cdf.jpeg" : "/img/wlop-1.jpg";
 
   return (
     <Canvas
