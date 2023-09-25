@@ -1,25 +1,43 @@
 import "../styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { MenuToggle, SidebarNav } from "../components/site";
 import { ThemeProvider } from "../theme/theme-context";
 
+const useDocumentOverflowHidden = (toggleMenu, pathname) => {
+  useEffect(() => {
+    const doc = document.documentElement;
+    const overflowHiddenClass = "overflow-hidden";
+
+    if (pathname === "/" || toggleMenu) {
+      doc.classList.add(overflowHiddenClass);
+    } else {
+      doc.classList.remove(overflowHiddenClass);
+    }
+  }, [toggleMenu, pathname]);
+};
+
 const MyApp = ({ Component, pageProps }) => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const router = useRouter();
+  useDocumentOverflowHidden(toggleMenu, router.pathname);
+
+  const onToggleMenu = () => {
+    setToggleMenu(!toggleMenu);
+  };
 
   return (
     <ThemeProvider>
       <div className="flex">
-        <SidebarNav
-          showMenu={toggleMenu}
-          toggle={() => setToggleMenu(!toggleMenu)}
-        />
-        <div className="w-full">
-          <MenuToggle toggle={() => setToggleMenu(!toggleMenu)} />
-          <div className="p-4 md:p-8 lg:max-w-2xl lg:mx-auto text-gray-600 dark:text-gray-300">
-            <Component {...pageProps} />
-          </div>
+        <SidebarNav showMenu={toggleMenu} toggleMenu={setToggleMenu} />
+        <div className="w-full h-full">
+          <MenuToggle
+            className={"p-8 pb-0 z-50 relative"}
+            toggleMenu={onToggleMenu}
+          />
+          <Component {...pageProps} />
         </div>
       </div>
       <Analytics />
